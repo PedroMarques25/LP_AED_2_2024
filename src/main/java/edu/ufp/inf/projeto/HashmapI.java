@@ -2,7 +2,7 @@ package edu.ufp.inf.lp2.projeto;
 
 import java.awt.*;
 
-public interface Hashmap {
+public interface HashmapI {
     private int hash(K key);
 
     public void put(K key, V value);
