@@ -63,4 +63,7 @@ public class BD implements gestãoSTI,gestãoRedBlack{
   public Node delete(Node h, double key) {
     return null;
   }
+  public Iterable<Double> getKeysBST() {
+    return devices.keys();
+  }
 }
