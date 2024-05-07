@@ -9,7 +9,7 @@ public class Artigo {
 
   public String palavrasChave;
 
-  public String abstract;
+  //public String abstract;
 
   public String tipoDePublicacao;
 
@@ -21,21 +21,21 @@ public class Artigo {
 
   public int numLikespDia;
 
-    public List<Publicacao> publicacao;
+    //public ArrayList<Publicacao> publicacao;
     /**
     * 
     *
    */
   public List<Autor> autores;
-    public LocalPublicacao publicacao;
 
-  public void adicionarArtigo( titulo,  palavrasChave,  abstract,  tipoDePublicacao,  ano,  numDownloads,  numViewspDia,  numLikespDia) {
+
+  public void adicionarArtigo(String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia) {
   }
 
-  public void removerArtigo( titulo,  palavrasChave,  abstract,  tipoDePublicacao,  ano,  numDownloads,  numViewspDia,  numLikespDia) {
+  public void removerArtigo (String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia){
   }
 
-  public void atualizarArtigo( titulo,  palavrasChave,  abstract,  tipoDePublicacao,  ano,  numDownloads,  numViewspDia,  numLikespDia) {
+  public void atualizarArtigo( String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia) {
   }
 
 }

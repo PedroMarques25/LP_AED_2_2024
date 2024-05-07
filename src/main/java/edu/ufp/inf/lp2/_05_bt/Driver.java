@@ -17,7 +17,7 @@ public class Driver {
         this.points = points;
     }
 
-    private Driver(String name, String licenseNumber){
+    Driver(String name, String licenseNumber){
 
         this.name = name;
     }
@@ -26,4 +26,11 @@ public class Driver {
 
     }
 
+    public String getNumberPenaltyFees() {
+        return null;
+    }
+
+    public String getName() {
+        return null;
+    }
 }

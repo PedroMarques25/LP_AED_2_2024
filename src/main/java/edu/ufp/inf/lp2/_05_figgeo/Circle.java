@@ -24,7 +24,11 @@ public class Circle extends FigGeo{
     this.color = color;
   }
 
-  public void move(float dx, float dy) {
+    public Circle() {
+        super(Color.cyan);
+    }
+
+    public void move(float dx, float dy) {
     this.center.x+= dx;
     this.center.y+=dy;
   }

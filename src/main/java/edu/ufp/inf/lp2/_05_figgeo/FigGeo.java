@@ -66,7 +66,7 @@ public class FigGeo implements FigGeoDimsl, FigGeoDrawI, FigGeoRelsl {
     Point dr = getPoint(1);
     Point dl = new Point(ul.getX(),dr.getY());
     Point ur = new Point(dr.getX(),ul.getY());
-    return isInside(ul) && isInside(Point p);
+    //return isInside(ul) && isInside(Point p);
     return false;
   }
 

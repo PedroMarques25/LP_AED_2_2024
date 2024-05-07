@@ -1,7 +1,6 @@
 package edu.ufp.inf.projeto;
 
-import String;
-
+import java.util.Date;
 public class Conferencia extends LocalPublicacao {
 
   public int num_Edicao;
@@ -12,13 +11,13 @@ public class Conferencia extends LocalPublicacao {
 
   public Date dateFim;
 
-  public void adicionarConferencia( num_Edicao,  local,  dateInicio,  dateFim) {
+  public void adicionarConferencia(int num_Edicao, String local, Date dateInicio, Date dateFim) {
   }
 
-  public void removerConferencia( num_Edicao,  local,  dateInicio,  dateFim) {
+  public void removerConferencia( int num_Edicao, String local, Date dateInicio, Date dateFim) {
   }
 
-  public void atualizarConferencia( num_Edicao,  local,  dateInicio,  dateFim) {
+  public void atualizarConferencia(int num_Edicao, String local, Date dateInicio, Date dateFim) {
   }
 
 }

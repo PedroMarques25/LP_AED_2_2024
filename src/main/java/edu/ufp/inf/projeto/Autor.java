@@ -1,8 +1,8 @@
 package edu.ufp.inf.projeto;
 
-import Integer;
+
 import java.util.List;
-import String;
+
 
 public class Autor {
 
@@ -20,22 +20,22 @@ public class Autor {
 
   public Integer scopusAuthor_ID;
 
-    public List<Publicacao> publicacao;
+    //public List<Publicacao> publicacao;
     /**
     * 
     *
    */
   public List<Artigo> artigos;
 
-  public Autor adicionarAutor( nome,  nome_curto,  filiacao,  ORCID,  ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
+  public Autor adicionarAutor(String nome, String nome_curto, String filiacao, int ORCID, int ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
   return null;
   }
 
-  public Autor removerAutor( nome,  nome_curto,  filiacao,  ORCID,  ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
+  public Autor removerAutor(String nome, String nome_curto, String filiacao, int ORCID, int ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
   return null;
   }
 
-  public Autor atualizarAutor( nome,  nome_curto,  filiacao,  ORCID,  ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
+  public Autor atualizarAutor(String nome, String nome_curto, String filiacao, int ORCID, int ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
   return null;
   }
 

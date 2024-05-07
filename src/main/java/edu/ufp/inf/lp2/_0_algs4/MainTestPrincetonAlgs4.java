@@ -30,5 +30,6 @@ public class MainTestPrincetonAlgs4 {
         FlowNetwork fn = new FlowNetwork(10);
         //Add edge between  nodes 0->1, with capacity 10.0 and flow 5.0
         fn.addEdge(new FlowEdge(0,1,10.0, 5.0));
+
     }
 }

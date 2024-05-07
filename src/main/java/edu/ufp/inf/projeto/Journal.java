@@ -1,6 +1,5 @@
 package edu.ufp.inf.projeto;
 
-import String;
 
 public class Journal extends LocalPublicacao {
 
@@ -12,13 +11,13 @@ public class Journal extends LocalPublicacao {
 
   public int scopus_IF;
 
-  public void adicionarJournal( publisher,  periodicidade,  JCR_IF,  scopus_IF) {
+  public void adicionarJournal( String publisher, int periodicidade, int JCR_IF, int scopus_IF) {
   }
 
-  public void removerJournal( publisher,  periodicidade,  JCR_IF,  scopus_IF) {
+  public void removerJournal( String publisher, int periodicidade, int JCR_IF, int scopus_IF) {
   }
 
-  public void atualizarJournal( publisher,  periodicidade,  JCR_IF,  scopus_IF) {
+  public void atualizarJournal( String publisher, int periodicidade, int JCR_IF, int scopus_IF) {
   }
 
 }

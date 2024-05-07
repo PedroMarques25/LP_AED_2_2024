@@ -6,6 +6,7 @@
 package edu.ufp.inf.lp2._05_bt;
 
 import edu.ufp.inf.lp2._05_bt.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,52 +27,43 @@ public class TesteBrigadaTransitoApp {
         Vehicle v1 = new Vehicle("12-34-AB", "BMW", "S1", 4);
         PenaltyFee m1 = null;
 
-        Date now = new Date(System.currentTimeMillis());
-        Date d1 = null;
+        edu.ufp.inf.lp2._01_intro.Date now = new edu.ufp.inf.lp2._01_intro.Date(System.currentTimeMillis());
+        edu.ufp.inf.lp2._01_intro.Date d1 = null;
         Date d2 = null;
         Date d3 = null;
         try {
-            d1 = new SimpleDateFormat("dd/MM/yyyy").parse("21/05/1999");
+            //d1 = new SimpleDateFormat("dd/MM/yyyy").parse("21/05/1999");
             d2 = new SimpleDateFormat("dd/MM/yyyy").parse("01/09/2000");
             d3 = new SimpleDateFormat("dd/MM/yyyy").parse("11/01/2005");
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        try {
-            m1 = new SeverePenaltyFee(d2, "Dormir ao volante", "Porto", c1, v1);
-        } catch (InvalidPenaltyFeeReasonException razaoDeMultaInvalida) {
-            try {
-                m1 = new SeverePenaltyFee(d2, SeverePenaltyFee.PARKING_VIOLATION, "Porto", c1, v1);
-            } catch (InvalidPenaltyFeeReasonException multaInvalida) {
-                multaInvalida.printStackTrace();
-            }
-        }
-        if(m1 != null){System.out.println(m1.getReason());}
-        try {
-            transitBrigade.addPenaltyFee(m1);
-        } catch (AlreadyRegisteredPenaltyFeeException e) {
-            e.printStackTrace();
-        }
+        m1 = new SeverePenaltyFee(d2, "Dormir ao volante", "Porto", c1, v1);
+        System.out.println(m1.getReason());
+        transitBrigade.addPenaltyFee(m1);
         System.out.println("MainTesteBT - main(): c1.getNumInfraccoes() = "+c1.getNumberPenaltyFees());
-        System.out.println("Número de multas = " + transitBrigade.lookupPenaltyFees(d1).size());
+        System.out.println("Número de multas = " + transitBrigade.lookupPenaltyFees(String.valueOf(d1)).size());
         System.out.println("Número de multas (Estacionamento) = " + transitBrigade.lookupPenaltyFees(SeverePenaltyFee.PARKING_VIOLATION).size());
-        PenaltyFee m2 = null;
-        try {
-            m2 = new VerySeverePenaltyFee(d3, "Não usar mascara", "Porto", c1, v1);
-        } catch (InvalidPenaltyFeeReasonException razaoDeMultaInvalida) {
-            try {
-                m2 = new VerySeverePenaltyFee(d3, VerySeverePenaltyFee.EXCESSO_ALCOOL, "Porto", c1, v1);
-            } catch (InvalidPenaltyFeeReasonException multaInvalida) {
-                multaInvalida.printStackTrace();
+        PenaltyFee m2;
+        m2 = new PenaltyFee(d3, "Não usar mascara", "Porto", c1, v1) {
+            @Override
+            public int compareTo(@NotNull PenaltyFee o) {
+                return 0;
             }
-        }
-        try {
-            transitBrigade.addPenaltyFee(m2);
-        } catch (AlreadyRegisteredPenaltyFeeException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Número de multas graves ou muito graves = " + transitBrigade.lookupSevereAndVerySeverePenaltyFees(SeverePenaltyFee.PARKING_VIOLATION).size());
+
+            @Override
+            public float value() {
+                return 0;
+            }
+
+            @Override
+            public int punishment() {
+                return 0;
+            }
+        };
+        transitBrigade.addPenaltyFee(m2);
+        //System.out.println("Número de multas graves ou muito graves = " + transitBrigade.lookupSevereAndVerySeverePenaltyFees(SeverePenaltyFee.PARKING_VIOLATION).size());
         System.out.println("O condutor "+c1.getName()+" teve "+transitBrigade.penaltyFeesCount(c1)+" multas, cujas razões são:");
         for(String r:transitBrigade.allPenaltyFeesMotiveByDriver(c1)){
             System.out.println("-> "+r);

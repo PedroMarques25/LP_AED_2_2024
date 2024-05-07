@@ -1,8 +1,12 @@
 package edu.ufp.inf.lp2._05_bt;
 
-public class InvalidPenaltyFeeReasonException {
+public class InvalidPenaltyFeeReasonException extends Throwable {
 
-  public void InvalidPenaltyFeeReasonException(String message) {
+    public InvalidPenaltyFeeReasonException(String s) {
+
+    }
+
+    public void InvalidPenaltyFeeReasonException(String message) {
   }
 
 }

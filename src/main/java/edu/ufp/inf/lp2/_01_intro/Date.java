@@ -19,7 +19,13 @@ public class Date {
   public Date(long l) {
   }
 
-  public short getDay() {
+  public Date(java.util.Date d3) {
+    this.day = (short) d3.getDate();
+    this.month = (short) d3.getMonth();
+    this.year = d3.getYear();
+  }
+
+    public short getDay() {
     return day;
   }
 

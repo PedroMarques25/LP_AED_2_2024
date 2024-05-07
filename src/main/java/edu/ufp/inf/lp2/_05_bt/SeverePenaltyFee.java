@@ -7,11 +7,15 @@ public class SeverePenaltyFee extends PenaltyFee{
 
     public String PROIBITION_ON_OVERTAKE;
 
-    public SeverePenaltyFee(String m, String l, Date d, Driver dr, Vehicle v) {
+    public SeverePenaltyFee(String m, String l, Date d, Driver dr, Vehicle v) throws InvalidPenaltyFeeReasonException {
         super(m,l,d,dr,v);
-        if(m.equals(PARKING_VIOLATION)|| m.equals(PROIBITION_ON_OVERTAKE)){
+        if(m.equals(PARKING_VIOLATION)){
             throw new InvalidPenaltyFeeReasonException("MOTIVE NOT CORRECT!");
         }
+    }
+
+    public SeverePenaltyFee(java.util.Date d2, String dormirAoVolante, String porto, Driver c1, Vehicle v1) {
+        super(d2,dormirAoVolante,porto,c1,v1);
     }
 
     @Override
