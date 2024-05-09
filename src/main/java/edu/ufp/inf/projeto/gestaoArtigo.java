@@ -1,17 +1,17 @@
 package edu.ufp.inf.projeto;
 
-import org.w3c.dom.Node;
+
 
 public interface gestaoArtigo {
-  
+
   void addArtigo(Double key,String value);
 
-Node addArtigoNode(Node node,double key,String value);
+  //Node addArtigoNode(Node node,Double key,String value);
 
-void deleteArtigo(double key);
+  void deleteArtigo(Double key);
   
-Node deleteArtigoNode(Node h, double key);
+  //Node deleteArtigoNode(Node h, Double key);
   
-Iterable<Double> getArtigo();
+  Iterable<Double> getArtigo();
   
 }
