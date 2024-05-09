@@ -134,4 +134,64 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
     return devices.keys();
 
   }
+
+  //1st attempt
+/*  public void deleteCascade(Double key) {
+
+    devices.delete(key);
+
+
+      artigos.removeIf(artigo -> artigo.getAutor().equals(key));
+
+      artigos.removeIf(artigo -> artigo.getConferencia().equals(key));
+
+    for (Journal journal : jornais) {
+      if (journal.getArtigos().contains(key)) {
+        journal.getArtigos().remove(key);
+      }
+    }
+
+    for (Conferencia conferencia : conferencias) {
+      if (conferencia.getArtigos().contains(key)) {
+        conferencia.getArtigos().remove(key);
+      }
+    }
+*/
+
+  //2nd attempt
+public void deleteCascade(Double key) {
+
+  devices.delete(key);
+
+  for (Artigo artigo : artigos) {
+    if (artigo.getAutores().equals(key)) {
+      artigos.remove(artigo);
+    }
+  }
+
+  for (Artigo artigo : artigos) {
+    if (artigo.getConferencia().equals(key)) {
+      artigos.remove(artigo);
+    }
+  }
+
+  for (Journal journal : jornais) {
+    for (Double artigoKey : journal.getArtigos()) {
+      if (artigoKey.equals(key)) {
+        journal.getArtigos().remove(artigoKey);
+        break;
+      }
+    }
+  }
+
+  for (Conferencia conferencia : conferencias) {
+    for (Double artigoKey : conferencia.getArtigos()) {
+      if (artigoKey.equals(key)) {
+        conferencia.getArtigos().remove(artigoKey);
+        break;
+      }
+    }
+  }
+}
+
 }

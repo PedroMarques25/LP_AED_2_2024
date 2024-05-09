@@ -10,8 +10,6 @@ public class Artigo {
 
   public String palavrasChave;
 
-  //public String abstract;
-
   public String tipoDePublicacao;
 
   public int ano;
@@ -42,4 +40,6 @@ public class Artigo {
   public void atualizarArtigo( String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia) {
   }
 
+  public Object getConferencia() {
+  }
 }

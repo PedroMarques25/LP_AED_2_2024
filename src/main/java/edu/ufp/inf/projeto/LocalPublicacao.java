@@ -7,5 +7,4 @@ public class LocalPublicacao {
 
   public int ano;
 
-  
 }
