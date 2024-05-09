@@ -8,7 +8,7 @@ import org.w3c.dom.Node;
 
 import java.util.List;
 
-public class BD implements gestãoSTI,gestãoRedBlack{
+public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferencia{
 
   ST<Double, String> st = new ST();
   RedBlackBST<Double, String> devices = new RedBlackBST();
@@ -20,50 +20,102 @@ public class BD implements gestãoSTI,gestãoRedBlack{
   }
 
   @Override
-  public void addKeyST(Double key, String value) {
-    st.put(key,value);
-  }
-  @Override
-  public String getKey(Double key) {
-    return st.get(key);
-  }
-  @Override
-  public void removeKey(Double key) {
-    st.remove(key);
-  }
-  @Override
-  public boolean containsKey(Double key) {
-    return st.contains(key);
-  }
-  @Override
-  public int getSize() {
-    return st.size();
-  }
-  @Override
-  public Iterable<Double> getKeys() {
-    return st.keys();
-  }
-  @Override
-  public void addDataRB(Double key, String value) {
-    devices.put(key, value);
-  }
-  @Override
-  public void addNode(double key,String value) {
+  public void addArtigo(Double key, String value) {
 
   }
+
   @Override
-  public org.w3c.dom.Node put(org.w3c.dom.Node h, double key, String value) {
-    return h;
+  public void addArtigoNode(double key, String value) {
+
   }
+
   @Override
-  public void delete(double key) {
-     devices.delete(key);
+  public void deleteArtigo(double key) {
+
   }
+
   @Override
-  public Node delete(Node h, double key) {
+  public Node deleteArtigoNode(Node h, double key) {
     return null;
   }
-  public Iterable<Double> getKeysBST() {
-    return devices.keys();
+
+  @Override
+  public Iterable<Double> getArtigo() {
+    return null;
+  }
+
+  @Override
+  public void addAutor(Double key, String value) {
+
+  }
+
+  @Override
+  public void addAutorNode(double key, String value) {
+
+  }
+
+  @Override
+  public void deleteAutor(double key) {
+
+  }
+
+  @Override
+  public Node deleteAutorNode(Node h, double key) {
+    return null;
+  }
+
+  @Override
+  public Iterable<Double> getAutores() {
+    return null;
+  }
+
+  @Override
+  public void addConferencia(Double key, String value) {
+
+  }
+
+  @Override
+  public void addConferenciaNode(double key, String value) {
+
+  }
+
+  @Override
+  public void deleteConferencia(double key) {
+
+  }
+
+  @Override
+  public Node deleteConferenciaNode(Node h, double key) {
+    return null;
+  }
+
+  @Override
+  public Iterable<Double> getConferencias() {
+    return null;
+  }
+
+  @Override
+  public void addJournal(Double key, String value) {
+
+  }
+
+  @Override
+  public void addJournalNode(double key, String value) {
+
+  }
+
+  @Override
+  public void deleteJournal(double key) {
+
+  }
+
+  @Override
+  public Node deleteJournalNode(Node h, double key) {
+    return null;
+  }
+
+  @Override
+  public Iterable<Double> getJournais() {
+    return null;
   }
 }
