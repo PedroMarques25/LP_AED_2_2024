@@ -6,7 +6,7 @@ public interface gestaoArtigo {
   
   void addArtigo(Double key,String value);
 
-void addArtigoNode(double key,String value);
+Node addArtigoNode(Node node,double key,String value);
 
 void deleteArtigo(double key);
   

@@ -5,7 +5,7 @@ public interface gestaoAutor {
   
 void addAutor(Double key,String value);
 
-void addAutorNode(double key,String value);
+Node addAutorNode(Node node,double key,String value);
 
 void deleteAutor(double key);
   

@@ -6,7 +6,7 @@ public interface gestaoJournal {
 
 void addJournal(Double key,String value);
 
-void addJournalNode(double key,String value);
+Node addJournalNode(Node node,double key,String value);
 
 void deleteJournal(double key);
   
