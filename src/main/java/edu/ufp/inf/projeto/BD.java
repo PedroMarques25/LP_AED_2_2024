@@ -3,15 +3,20 @@ package edu.ufp.inf.projeto;
 import edu.princeton.cs.algs4.FlowEdge;
 import edu.princeton.cs.algs4.FlowNetwork;
 import edu.princeton.cs.algs4.RedBlackBST;
+import edu.princeton.cs.algs4.RedBlackBST.*;
 import edu.princeton.cs.algs4.ST;
-import org.w3c.dom.Node;
 
 import java.util.List;
 
-public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferencia{
 
-  ST<Double, String> st = new ST();
-  RedBlackBST<Double, String> devices = new RedBlackBST();
+public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferencia  {
+
+
+  RedBlackBST<Double, String> devices = new RedBlackBST<>();
+  public List<Autor> autor;
+  public List<Artigo> artigos;
+  public List<Conferencia> conferencias;
+  public List<Journal> jornais;
 
   public Integer ArrayList;
 
@@ -24,22 +29,24 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
       devices.put(key,value);
   }
 
-  @Override
-  public Node addArtigoNode(Node node,double key, String value) {
+  /*@Override
+  public Node addArtigoNode(Node node, Double key, String value) {
       devices.put(node,key,value);
       return node;
-  }
+  }*/
+
+
 
   @Override
-  public void deleteArtigo(double key) {
+  public void deleteArtigo(Double key) {
     devices.delete(key);
   }
 
-  @Override
-  public Node deleteArtigoNode(Node h, double key) {
+  /*@Override
+  public Node deleteArtigoNode(Node h, Double key) {
     devices.delete(h,key);
     return null;
-  }
+  }*/
 
   @Override
   public Iterable<Double> getArtigo() {
@@ -51,22 +58,22 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
     devices.put(key,value);
   }
 
-  @Override
-  public Node addAutorNode(Node node,double key, String value) {
+  /*@Override
+  public Node addAutorNode(Node node,Double key, String value) {
     devices.put(node,key,value);
     return node;
-  }
+  }*/
 
   @Override
-  public void deleteAutor(double key) {
+  public void deleteAutor(Double key) {
     devices.delete(key);
   }
 
-  @Override
-  public Node deleteAutorNode(Node h, double key) {
+ /* @Override
+  public Node deleteAutorNode(Node h, Double key) {
     devices.delete(h,key);
     return null;
-  }
+  }*/
 
   @Override
   public Iterable<Double> getAutores() {
@@ -78,22 +85,22 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
     devices.put(key,value);
   }
 
-  @Override
-  public Node addConferenciaNode(Node node,double key, String value) {
+  /*@Override
+  public Node addConferenciaNode(Node node,Double key, String value) {
     devices.put(node,key,value);
     return node;
-  }
+  }*/
 
   @Override
-  public void deleteConferencia(double key) {
+  public void deleteConferencia(Double key) {
     devices.delete(key);
   }
 
-  @Override
-  public Node deleteConferenciaNode(Node h, double key) {
+ /* @Override
+  public Node deleteConferenciaNode(Node h, Double key) {
     devices.delete(h,key);
     return null;
-  }
+  }*/
 
   @Override
   public Iterable<Double> getConferencias() {
@@ -105,22 +112,22 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
     devices.put(key,value);
   }
 
-  @Override
-  public Node addJournalNode(Node node,double key, String value) {
+  /*@Override
+  public Node addJournalNode(Node node,Double key, String value) {
     devices.put(node,key,value);
     return node;
-  }
+  }*/
 
   @Override
-  public void deleteJournal(double key) {
+  public void deleteJournal(Double key) {
     devices.delete(key);
   }
 
-  @Override
-  public Node deleteJournalNode(Node h, double key) {
-    devices.delete(node,key);
+ /* @Override
+  public Node deleteJournalNode(Node h, Double key) {
+    devices.delete(h,key);
     return null;
-  }
+  }*/
 
   @Override
   public Iterable<Double> getJournais() {
