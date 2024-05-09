@@ -1,16 +1,16 @@
 package edu.ufp.inf.projeto;
 
-import org.w3c.dom.Node;
+
 
 public interface gestaoJournal {
 
 void addJournal(Double key,String value);
 
-Node addJournalNode(Node node,double key,String value);
+//Node addJournalNode(Node node,Double key,String value);
 
-void deleteJournal(double key);
+void deleteJournal(Double key);
   
-Node deleteJournalNode(Node h, double key);
+//Node deleteJournalNode(Node h, Double key);
   
 Iterable<Double> getJournais();
 }
