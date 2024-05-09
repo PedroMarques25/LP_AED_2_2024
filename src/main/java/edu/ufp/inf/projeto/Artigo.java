@@ -10,7 +10,6 @@ public class Artigo {
 
   public String palavrasChave;
 
-  //public String abstract;
 
   public String tipoDePublicacao;
 
@@ -21,6 +20,19 @@ public class Artigo {
   public int numViewspDia;
 
   public int numLikespDia;
+  public Artigo(Autor autor,String titulo,String palavrasChave,String tipoDePublicacao,
+                int ano,int numDownloads,int numViewspDia,int numLikespDia){
+
+    this.autor= (List<Autor>) autor;
+    this.titulo=titulo;
+    this.palavrasChave=palavrasChave;
+    this.tipoDePublicacao=tipoDePublicacao;
+    this.ano=ano;
+    this.numDownloads=numDownloads;
+    this.numLikespDia=numLikespDia;
+    this.numViewspDia=numViewspDia;
+
+  }
 
     //public ArrayList<Publicacao> publicacao;
     /**
@@ -33,13 +45,24 @@ public class Artigo {
    public List<Journal> jornais = new ArrayList<>();
 
 
-  public void adicionarArtigo(String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia) {
+  public void adicionarArtigo(Artigo artigo) {
+    artigos.add(artigo);
   }
 
-  public void removerArtigo (String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia){
+  public void removerArtigo (Artigo artigo){
+    artigos.remove(artigo);
   }
 
-  public void atualizarArtigo( String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia) {
+  public void atualizarArtigo(Autor autor, String titulo, String palavrasChave,
+                              String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia,int key) {
+    artigos.get(key).autor= (List<Autor>) autor;
+    artigos.get(key).titulo=titulo;
+    artigos.get(key).palavrasChave=palavrasChave;
+    artigos.get(key).tipoDePublicacao=tipoDePublicacao;
+    artigos.get(key).ano=ano;
+    artigos.get(key).numDownloads=numDownloads;
+    artigos.get(key).numViewspDia=numViewspDia;
+    artigos.get(key).numLikespDia=numLikespDia;
   }
 
 }
