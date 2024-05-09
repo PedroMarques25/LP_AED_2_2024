@@ -1,17 +1,18 @@
 package edu.ufp.inf.projeto;
 
-import org.w3c.dom.Node;
+
 
 public interface gestaoConferencia {
 
 void addConferencia(Double key,String value);
 
-Node addConferenciaNode(Node node, double key,String value);
+//Node addConferenciaNode(Node node, Double key,String value);
 
-void deleteConferencia(double key);
+void deleteConferencia(Double key);
   
-Node deleteConferenciaNode(Node h, double key);
+//Node deleteConferenciaNode(Node h, Double key);
   
 Iterable<Double> getConferencias();
   
 }
+
