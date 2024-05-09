@@ -1,6 +1,9 @@
 package edu.ufp.inf.projeto;
 
 
+import edu.ufp.inf.lp2._0_videoclub.Movie;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +28,8 @@ public class Autor {
     * 
     *
    */
-  public List<Artigo> artigos;
+    public List<Autor> autores = new ArrayList<>();
+
 
   public Autor adicionarAutor(String nome, String nome_curto, String filiacao, int ORCID, int ciencia_ID, int googleScholar_ID, int scopusAuthor_ID) {
   return null;
