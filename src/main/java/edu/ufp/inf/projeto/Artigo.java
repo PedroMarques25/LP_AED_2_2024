@@ -1,5 +1,6 @@
 package edu.ufp.inf.projeto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +27,10 @@ public class Artigo {
     * 
     *
    */
-  public List<Autor> autores;
+  public List<Autor> autor;
+  public List<Artigo> artigos = new ArrayList<>();
+
+   public List<Journal> jornais = new ArrayList<>();
 
 
   public void adicionarArtigo(String titulo, String palavrasChave, String absTract, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia,  int numLikespDia) {
