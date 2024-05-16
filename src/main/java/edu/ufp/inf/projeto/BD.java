@@ -13,6 +13,7 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
 
 
   RedBlackBST<Double, String> devices = new RedBlackBST<>();
+  ST<Double, String> st = new ST();
   public List<Autor> autor;
   public List<Artigo> artigos;
   public List<Conferencia> conferencias;
@@ -26,63 +27,38 @@ public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferen
 
   @Override
   public void addArtigo(Double key, String value) {
-      devices.put(key,value);
+      st.put(key,value);
   }
-
-  /*@Override
-  public Node addArtigoNode(Node node, Double key, String value) {
-      devices.put(node,key,value);
-      return node;
-  }*/
-
-
 
   @Override
   public void deleteArtigo(Double key) {
-    devices.delete(key);
+    st.delete(key);
   }
 
-  /*@Override
-  public Node deleteArtigoNode(Node h, Double key) {
-    devices.delete(h,key);
-    return null;
-  }*/
 
   @Override
   public Iterable<Double> getArtigo() {
-    return devices.keys();
+    return st.keys();
   }
 
   @Override
   public void addAutor(Double key, String value) {
-    devices.put(key,value);
+    st.put(key,value);
   }
-
-  /*@Override
-  public Node addAutorNode(Node node,Double key, String value) {
-    devices.put(node,key,value);
-    return node;
-  }*/
 
   @Override
   public void deleteAutor(Double key) {
-    devices.delete(key);
+    st.delete(key);
   }
-
- /* @Override
-  public Node deleteAutorNode(Node h, Double key) {
-    devices.delete(h,key);
-    return null;
-  }*/
 
   @Override
   public Iterable<Double> getAutores() {
-    return devices.keys();
+    return st.keys();
   }
 
   @Override
   public void addConferencia(Double key, String value) {
-    devices.put(key,value);
+    at.put(key,value);
   }
 
   /*@Override
