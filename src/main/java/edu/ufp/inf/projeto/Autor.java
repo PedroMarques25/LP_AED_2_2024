@@ -6,55 +6,121 @@ import edu.ufp.inf.lp2._0_videoclub.Movie;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Autor {
+    private String nome;
+    private String nomeCurto;
+    private String filiacao;
+    private int ORCID;
+    private int cienciaID;
+    private int googleScholarID;
+    private int scopusAuthorID;
 
-  private String nome;
+    // Lista estática de autores
+    private static List<Autor> autores = new ArrayList<>();
+    private List<Artigo> artigos;
+    public Autor(String nome, String nomeCurto, String filiacao,int ORCID,int cienciaID,int googleScholarID,int scopusAuthorID) {
+        this.nome = nome;
+        this.nomeCurto = nomeCurto;
+        this.filiacao = filiacao;
+        this.ORCID = ORCID;
+        this.cienciaID = cienciaID;
+        this.googleScholarID = googleScholarID;
+        this.scopusAuthorID = scopusAuthorID;
+        this.artigos = new ArrayList<>();
+    }
 
-  public String nome_curto;
+    // Getters
+    public String getNome() {
+        return nome;
+    }
 
-  public String filiacao;
+    public String getNomeCurto() {
+        return nomeCurto;
+    }
 
-  public Integer ORCID;
+    public String getFiliacao() {
+        return filiacao;
+    }
 
-  public Integer ciencia_ID;
+    public int getORCID() {
+        return ORCID;
+    }
 
-  public Integer googleScholar_ID;
+    public int getCienciaID() {
+        return cienciaID;
+    }
 
-  public Integer scopusAuthor_ID;
+    public int getGoogleScholarID() {
+        return googleScholarID;
+    }
 
-  public Autor(String nome, String nome_curto,String filiacao,Integer ORCID,Integer ciencia_ID,Integer googleScholar_ID,Integer scopusAuthor_ID){
-    this.nome=nome;
-    this.nome_curto=nome_curto;
-    this.filiacao=filiacao;
-    this.ORCID=ORCID;
-    this.ciencia_ID=ciencia_ID;
-    this.googleScholar_ID=googleScholar_ID;
-    this.scopusAuthor_ID=scopusAuthor_ID;
-  }
-  public List<Autor> autores = new ArrayList<>();
-    //public List<Publicacao> publicacao;
-    /**
-    * 
-    *
-   */
-  public void adicionarAutor(Autor autor) {
-    autores.add(autor);
-  }
+    public int getScopusAuthorID() {
+        return scopusAuthorID;
+    }
 
-  public void removerAutor(Autor autor) {
-    autores.remove(autor);
-  }
+    // Setters
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-  public void atualizarAutor(String nome, String nome_curto, String filiacao, int ORCID, int ciencia_ID, int googleScholar_ID, int scopusAuthor_ID,int key) {
+    public void setNomeCurto(String nomeCurto) {
+        this.nomeCurto = nomeCurto;
+    }
 
-          autores.get(key).nome=nome;
-          autores.get(key).nome_curto=nome_curto;
-          autores.get(key).filiacao=filiacao;
-          autores.get(key).ORCID=ORCID;
-          autores.get(key).ciencia_ID=ciencia_ID;
-          autores.get(key).googleScholar_ID=googleScholar_ID;
-          autores.get(key).scopusAuthor_ID=scopusAuthor_ID;
-  }
+    public void setFiliacao(String filiacao) {
+        this.filiacao = filiacao;
+    }
 
+    public void setORCID(int ORCID) {
+        this.ORCID = ORCID;
+    }
+
+    public void setCienciaID(int cienciaID) {
+        this.cienciaID = cienciaID;
+    }
+
+    public void setGoogleScholarID(int googleScholarID) {
+        this.googleScholarID = googleScholarID;
+    }
+
+    public void setScopusAuthorID(int scopusAuthorID) {
+        this.scopusAuthorID = scopusAuthorID;
+    }
+
+    // Métodos para adicionar, remover e atualizar autores
+    public static Autor adicionarAutor(String nome, String nomeCurto, String filiacao, int ORCID, int cienciaID, int googleScholarID, int scopusAuthorID) {
+        Autor autor = new Autor(nome, nomeCurto, filiacao,  ORCID,  cienciaID,  googleScholarID,  scopusAuthorID);
+        autores.add(autor);
+        return autor;
+    }
+    public List<Artigo> getArtigos() {
+        return artigos;
+    }
+
+    public void adicionarArtigo(Artigo artigo) {
+        artigos.add(artigo);
+    }
+
+    public void removerArtigo(Artigo artigo) {
+        artigos.remove(artigo);
+    }
+
+    public static void removerAutor(Autor autor) {
+        autores.remove(autor);
+    }
+
+    public void atualizarAutor(String nome, String nomeCurto, String filiacao, int ORCID, int cienciaID, int googleScholarID, int scopusAuthorID) {
+        this.setNome(nome);
+        this.setNomeCurto(nomeCurto);
+        this.setFiliacao(filiacao);
+        this.setORCID(ORCID);
+        this.setCienciaID(cienciaID);
+        this.setGoogleScholarID(googleScholarID);
+        this.setScopusAuthorID(scopusAuthorID);
+    }
+
+    // Método para obter a lista de autores (opcional)
+    public static List<Autor> getAutores() {
+        return autores;
+    }
 }

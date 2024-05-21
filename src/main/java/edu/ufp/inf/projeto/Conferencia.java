@@ -4,40 +4,76 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Conferencia extends LocalPublicacao {
+public class Conferencia {
+  private int numEdicao;
+  private String local;
+  private Date dataInicio;
+  private Date dataFim;
 
-  public int num_Edicao;
+  // Lista estática de conferencias
+  private static List<Conferencia> conferencias = new ArrayList<>();
+  public Conferencia (int numEdicao, String local, Date dataInicio, Date dataFim) {
 
-  public String local;
+    this.setNumEdicao(numEdicao);
+    this.setLocal(local);
+    this.setDataInicio(dataInicio);
+    this.setDataFim(dataFim);
 
-  public Date dataInicio;
-
-  public Date dateFim;
-  public List<Artigo> artigosdeconferencias = new ArrayList<>();
-  public Conferencia(int num_Edicao, String local, Date dataInicio,Date dateFim,List<Artigo> artigosdeconferencias){
-    this.num_Edicao=num_Edicao;
-    this.dataInicio=dataInicio;
-    this.dateFim=dateFim;
-    this.artigosdeconferencias=artigosdeconferencias;
   }
-  public List<Artigo> artigos;
-  public List<Conferencia> conferencias = new ArrayList<>();
+  // Getters
+  public int getNumEdicao() {
+    return numEdicao;
+  }
 
+  public String getLocal() {
+    return local;
+  }
 
-  public void adicionarConferencia(Conferencia conferencia) {
+  public Date getDataInicio() {
+    return dataInicio;
+  }
+
+  public Date getDataFim() {
+    return dataFim;
+  }
+
+  // Setters
+  public void setNumEdicao(int numEdicao) {
+    this.numEdicao = numEdicao;
+  }
+
+  public void setLocal(String local) {
+    this.local = local;
+  }
+
+  public void setDataInicio(Date dataInicio) {
+    this.dataInicio = dataInicio;
+  }
+
+  public void setDataFim(Date dataFim) {
+    this.dataFim = dataFim;
+  }
+
+  // Métodos para adicionar, remover e atualizar conferencias
+  public static Conferencia adicionarConferencia(int numEdicao, String local, Date dataInicio, Date dataFim) {
+    Conferencia conferencia = new Conferencia(numEdicao,  local,  dataInicio, dataFim);
     conferencias.add(conferencia);
+    return conferencia;
   }
 
-  public void removerConferencia(Conferencia conferencia) {
+  public static void removerConferencia(Conferencia conferencia) {
     conferencias.remove(conferencia);
   }
 
-  public void atualizarConferencia(int num_Edicao, String local, Date dateInicio, Date dateFim,List<Artigo>artigosdeconferencia,int key) {
-    conferencias.get(key).num_Edicao=num_Edicao;
-    conferencias.get(key).local=local;
-    conferencias.get(key).dataInicio=dataInicio;
-    conferencias.get(key).dateFim=dateFim;
-    conferencias.get(key).artigosdeconferencias=artigosdeconferencia;
+  public void atualizarConferencia(int numEdicao, String local, Date dataInicio, Date dataFim) {
+    this.setNumEdicao(numEdicao);
+    this.setLocal(local);
+    this.setDataInicio(dataInicio);
+    this.setDataFim(dataFim);
   }
 
+  // Método para obter a lista de conferencias (opcional)
+  public static List<Conferencia> getConferencias() {
+    return conferencias;
+  }
 }

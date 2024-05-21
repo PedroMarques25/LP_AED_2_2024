@@ -1,173 +1,80 @@
 package edu.ufp.inf.projeto;
-
+import java.io.*;
 import edu.princeton.cs.algs4.FlowEdge;
 import edu.princeton.cs.algs4.FlowNetwork;
 import edu.princeton.cs.algs4.RedBlackBST;
 import edu.princeton.cs.algs4.RedBlackBST.*;
 import edu.princeton.cs.algs4.ST;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
+public class BD {
+  private Map<Integer, Autor> autores;
+  private Map<String, Artigo> artigos;
+  private Map<String, Publicacao> publicacoes;
 
-public class BD implements gestaoAutor,gestaoJournal,gestaoArtigo,gestaoConferencia  {
-
-
-  RedBlackBST<Double, String> devices = new RedBlackBST<>();
-  ST<Double, String> st = new ST();
-  public List<Autor> autor;
-  public List<Artigo> artigos;
-  public List<Conferencia> conferencias;
-  public List<Journal> jornais;
-
-  public Integer ArrayList;
-
-  public static void main(String[] args) {
-
+  public BD() {
+    this.autores = new HashMap<>();
+    this.artigos = new HashMap<>();
+    this.publicacoes = new HashMap<>();
   }
 
-  @Override
-  public void addArtigo(Double key, String value) {
-      st.put(key,value);
+  // Adiciona um autor à base de dados
+  public void adicionarAutor(Autor autor) {
+    autores.put(autor.getORCID(), autor);
   }
 
-  @Override
-  public void deleteArtigo(Double key) {
-    st.delete(key);
+  // Adiciona um artigo à base de dados
+  public void adicionarArtigo(Artigo artigo) {
+    artigos.put(artigo.getTitulo(), artigo);
   }
 
-
-  @Override
-  public Iterable<Double> getArtigo() {
-    return st.keys();
+  // Adiciona uma publicação à base de dados
+  public void adicionarPublicacao(Publicacao publicacao) {
+    publicacoes.put(publicacao.getNome(), publicacao);
   }
 
-  @Override
-  public void addAutor(Double key, String value) {
-    st.put(key,value);
-  }
-
-  @Override
-  public void deleteAutor(Double key) {
-    st.delete(key);
-  }
-
-  @Override
-  public Iterable<Double> getAutores() {
-    return st.keys();
-  }
-
-  @Override
-  public void addConferencia(Double key, String value) {
-    at.put(key,value);
-  }
-
-  /*@Override
-  public Node addConferenciaNode(Node node,Double key, String value) {
-    devices.put(node,key,value);
-    return node;
-  }*/
-
-  @Override
-  public void deleteConferencia(Double key) {
-    devices.delete(key);
-  }
-
- /* @Override
-  public Node deleteConferenciaNode(Node h, Double key) {
-    devices.delete(h,key);
-    return null;
-  }*/
-
-  @Override
-  public Iterable<Double> getConferencias() {
-    return devices.keys();
-  }
-
-  @Override
-  public void addJournal(Double key, String value) {
-    devices.put(key,value);
-  }
-
-  /*@Override
-  public Node addJournalNode(Node node,Double key, String value) {
-    devices.put(node,key,value);
-    return node;
-  }*/
-
-  @Override
-  public void deleteJournal(Double key) {
-    devices.delete(key);
-  }
-
- /* @Override
-  public Node deleteJournalNode(Node h, Double key) {
-    devices.delete(h,key);
-    return null;
-  }*/
-
-  @Override
-  public Iterable<Double> getJournais() {
-    return devices.keys();
-
-  }
-
-  //1st attempt
-/*  public void deleteCascade(Double key) {
-
-    devices.delete(key);
-
-
-      artigos.removeIf(artigo -> artigo.getAutor().equals(key));
-
-      artigos.removeIf(artigo -> artigo.getConferencia().equals(key));
-
-    for (Journal journal : jornais) {
-      if (journal.getArtigos().contains(key)) {
-        journal.getArtigos().remove(key);
-      }
-    }
-
-    for (Conferencia conferencia : conferencias) {
-      if (conferencia.getArtigos().contains(key)) {
-        conferencia.getArtigos().remove(key);
-      }
-    }
-*/
-
-  //2nd attempt
-public void deleteCascade(Double key) {
-
-  devices.delete(key);
-
-  for (Artigo artigo : artigos) {
-    if (artigo.getAutores().equals(key)) {
-      artigos.remove(artigo);
-    }
-  }
-
-  for (Artigo artigo : artigos) {
-    if (artigo.getConferencia().equals(key)) {
-      artigos.remove(artigo);
-    }
-  }
-
-  for (Journal journal : jornais) {
-    for (Double artigoKey : journal.getArtigos()) {
-      if (artigoKey.equals(key)) {
-        journal.getArtigos().remove(artigoKey);
-        break;
+  // Remove um autor da base de dados
+  public void removerAutor(String orcid) {
+    Autor autor = autores.remove(orcid);
+    if (autor != null) {
+      for (Artigo artigo : autor.getArtigos()) {
+        artigo.removerAutor(autor);
       }
     }
   }
 
-  for (Conferencia conferencia : conferencias) {
-    for (Double artigoKey : conferencia.getArtigos()) {
-      if (artigoKey.equals(key)) {
-        conferencia.getArtigos().remove(artigoKey);
-        break;
+  // Remove um artigo da base de dados
+  public void removerArtigo(String titulo) {
+    Artigo artigo = artigos.remove(titulo);
+    if (artigo != null) {
+      for (Autor autor : artigo.getAutores()) {
+        autor.removerArtigo(artigo);
+      }
+      for (Artigo referencia : artigo.getReferencias()) {
+        referencia.removerReferencia(artigo);
+      }
+      for (Artigo a : artigos.values()) {
+        a.removerReferencia(artigo);
       }
     }
   }
-}
 
+  // Remove uma publicação da base de dados
+  public void removerPublicacao(String nome) {
+    publicacoes.remove(nome);
+  }
+
+  public Autor buscarAutor(String orcid) {
+    return autores.get(orcid);
+  }
+
+  public Artigo buscarArtigo(String titulo) {
+    return artigos.get(titulo);
+  }
+
+  public Publicacao buscarPublicacao(String nome) {
+    return publicacoes.get(nome);
+  }
 }
