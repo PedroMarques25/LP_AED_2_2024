@@ -211,5 +211,47 @@ public class BD {
     }
     return citacoes;
   }
+  public void gerarRelatorio() {
+    System.out.println("Relatório de Autores:");
+    for (Autor autor : autores.values()) {
+      System.out.println("Nome: " + autor.getNome());
+      System.out.println("Afiliacao: " + autor.getFiliacao());
+      System.out.println("ORCID: " + autor.getORCID());
+      System.out.println("Nome Curto: " + autor.getNomeCurto());
+      System.out.println("ScopusAuthorID: " + autor.getScopusAuthorID());
+      System.out.println("GoogleScholarID: " + autor.getGoogleScholarID());
+      System.out.println("CienciaID: " + autor.getCienciaID());
+      for (Artigo artigo : autor.getArtigos()) {
+        System.out.print(artigo.getTitulo() + " ");
+      }
+      System.out.println("-------------------------");
+    }
+    System.out.println("Relatório de Artigos:");
+    for (Artigo artigo : artigos.values()) {
+      System.out.println("Título: " + artigo.getTitulo());
+      System.out.println("Ano: " + artigo.getAno());
+      System.out.println("NumViewspDia: " + artigo.getNumViewspDia());
+      System.out.println("Número de Downloads: " + artigo.getNumDownloads());
+      System.out.println("NumLikespDia: " + artigo.getNumLikespDia());
+      System.out.println("AbstractTexto: " + artigo.getAbstractTexto());
+      System.out.print("Autores: ");
+      for (Autor autor : artigo.getAutores()) {
+        System.out.print(autor.getNome() + " ");
+      }
+      for (Artigo referencias: artigo.getReferencias()) {
+        System.out.print(referencias.getTitulo() + " ");
+      }
+
+      System.out.println();
+      System.out.println("-------------------------");
+    }
+
+    System.out.println("Relatório de Journal:");
+    for (String journal : journais.keys()) {
+      System.out.println("Nome: " + journal.);
+      System.out.println("Tipo: " + publicacao.getTipo());
+      System.out.println("-------------------------");
+    }
+  }
 }
 
