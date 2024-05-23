@@ -95,6 +95,7 @@ public class Artigo {
   public void setNumLikespDia(int numLikespDia) {
     this.numLikespDia = numLikespDia;
   }
+
   public List<Autor> getAutores() {
     return autores;
   }
@@ -147,4 +148,13 @@ public class Artigo {
   public static List<Artigo> getArtigos() {
     return artigos;
   }
+
+  @Override
+  public String toString() {
+    return "Artigo{" +
+            "titulo='" + titulo + '\'' +
+            ", tipo_de_publicação='" + tipoDePublicacao + '\'' +
+            '}';
+  }
 }
+

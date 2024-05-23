@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Conferencia extends Publicacao{
   private int numEdicao;
+  private String nome;
   private String local;
   private Date dataInicio;
   private Date dataFim;
@@ -15,6 +16,7 @@ public class Conferencia extends Publicacao{
   public Conferencia (int numEdicao, String local, Date dataInicio, Date dataFim,String nome,String tipo) {
 
     super(nome,tipo);
+    this.setNome(nome);
     this.setNumEdicao(numEdicao);
     this.setLocal(local);
     this.setDataInicio(dataInicio);
@@ -37,6 +39,9 @@ public class Conferencia extends Publicacao{
   public Date getDataFim() {
     return dataFim;
   }
+  public String getNome(){
+    return nome;
+  }
 
   // Setters
   public void setNumEdicao(int numEdicao) {
@@ -53,6 +58,10 @@ public class Conferencia extends Publicacao{
 
   public void setDataFim(Date dataFim) {
     this.dataFim = dataFim;
+  }
+
+  public void setNome(String nome){
+    this.nome = nome;
   }
 
   // Métodos para adicionar, remover e atualizar conferencias
@@ -76,5 +85,12 @@ public class Conferencia extends Publicacao{
   // Método para obter a lista de conferencias (opcional)
   public static List<Conferencia> getConferencias() {
     return conferencias;
+  }
+  @Override
+  public String toString() {
+    return "Conferencia{" +
+            "SetNumEdição='" + numEdicao + '\'' +
+            ", local='" + local + '\'' +
+            '}';
   }
 }

@@ -123,4 +123,12 @@ public class Autor {
     public static List<Autor> getAutores() {
         return autores;
     }
+
+    @Override
+    public String toString() {
+        return "Autor{" +
+                "nome='" + nome + '\'' +
+                ", orcid='" + ORCID + '\'' +
+                '}';
+    }
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class Client extends Person implements ClientRelationshipsI {
 
     private final String vatNumber;

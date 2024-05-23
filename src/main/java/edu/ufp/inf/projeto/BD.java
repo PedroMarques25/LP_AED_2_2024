@@ -5,6 +5,10 @@ import edu.princeton.cs.algs4.FlowNetwork;
 import edu.princeton.cs.algs4.RedBlackBST;
 import edu.princeton.cs.algs4.RedBlackBST.*;
 import edu.princeton.cs.algs4.ST;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,6 +75,33 @@ public class BD {
     }
   }
 
+  private void gravarAutorRemovido(Autor autor) {
+    String filename = "autores_removidos.txt"; // Nome do ficheiro onde os autores serão armazenados
+
+    try (FileWriter fw = new FileWriter(filename, true);
+         BufferedWriter bw = new BufferedWriter(fw);
+         PrintWriter out = new PrintWriter(bw)) {
+      // Escreve a representação do autor no ficheiro
+      out.println(autor.toString());
+    } catch (IOException e) {
+      System.err.println("Erro ao gravar autor removido: " + e.getMessage());
+    }
+  }
+
+  public void removerAutorParaFicheiro(int orcid) {
+    Autor autor = autores.remove(orcid);
+    if (autor != null) {
+      // Grava o autor removido no ficheiro
+      gravarAutorRemovido(autor);
+
+      for (Artigo artigo : autor.getArtigos()) {
+        artigo.removerAutor(autor);
+      }
+    }
+  }
+
+
+
   // Remove uma publicação da base de dados
   public void removerConferencia(String nome) {
     conferencias.delete(nome);
@@ -80,6 +111,35 @@ public class BD {
     journais.delete(nome);
     publicacoes.delete(nome);
   }
+
+  public void removerConferenciaParaFicheiro(Conferencia nome) {
+    Conferencia conferencia = conferencias.delete(nome);
+    if (conferencia != null) {
+      String filename = "conferencias_removidas.txt";
+      try (FileWriter fw = new FileWriter(filename, true);
+           BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter out = new PrintWriter(bw)) {
+        out.println(conferencia.toString());
+      } catch (IOException e) {
+        System.err.println("Erro ao gravar conferencia removida: " + e.getMessage());
+      }
+    }
+  }
+
+  public void removerJournalParaFicheiro(String nome) {
+    Journal journal = journais.delete(nome);
+    if (journal != null) {
+      String filename = "journals_removidos.txt";
+      try (FileWriter fw = new FileWriter(filename, true);
+           BufferedWriter bw = new BufferedWriter(fw);
+           PrintWriter out = new PrintWriter(bw)) {
+        out.println(journal.toString());
+      } catch (IOException e) {
+        System.err.println("Erro ao gravar journal removido: " + e.getMessage());
+      }
+    }
+  }
+
 
   public Autor buscarAutor(String orcid) {
     return autores.get(orcid);

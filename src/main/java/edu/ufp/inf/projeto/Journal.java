@@ -77,4 +77,11 @@ public class Journal extends Publicacao{
   public static List<Journal> getJournals() {
     return journals;
   }
+  @Override
+  public String toString() {
+    return "Journal{" +
+            "Publisher='" + publisher + '\'' +
+            ", SCOPUS_ID='" + scopus_IF + '\'' +
+            '}';
+  }
 }

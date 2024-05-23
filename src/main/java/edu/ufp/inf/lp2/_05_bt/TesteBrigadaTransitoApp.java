@@ -8,15 +8,20 @@ package edu.ufp.inf.lp2._05_bt;
 import edu.ufp.inf.lp2._05_bt.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.ListIterator;
 
 /**
  *
  * @author rjm
  */
 public class TesteBrigadaTransitoApp {
+
+    private static final String FILE_DELIMITER = ";";
 
     /**
      * @param args the command line arguments
@@ -76,4 +81,44 @@ public class TesteBrigadaTransitoApp {
         System.out.println("Número de multas do "+c1.getName()+": "+transitBrigade.lookupPenaltyFeesDriver(c1,d1, now ).size());
     }
 
+    private static void saveVehiclesToTxtFile(String path, ListIterator<Vehicle> listIt) {
+        System.out.println("saveVehiclesToTxtFile(): save vehicles to txt...");
+        //Try with resources...
+        try (PrintWriter pw=new PrintWriter(new FileWriter(path))) {
+            //Save header of file
+            pw.println("Registration" + FILE_DELIMITER + "Brand" + FILE_DELIMITER + "Model" + FILE_DELIMITER + "Cylinders");
+            //Iterate over listIt and save vehicles into file
+
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        }
+    }
+
+    private static ArrayList<Vehicle> readVehiclesFromTxtFile(String path) {
+        ArrayList<Vehicle> vehicleArrayList=new ArrayList<>();
+        BufferedReader br=null;
+        try {
+            //Open input stream
+            br=new BufferedReader(new FileReader(path));
+            //Read and parse vehicles from file
+            //First line of file is to throw away because it is the header
+            br.readLine();
+            String line=null;
+            //Read and parse all reminder file lines
+            while ((line=br.readLine()) != null) {
+                //...
+            }
+        } catch (IOException ioe) {
+            System.out.println(ioe);
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return vehicleArrayList;
+    }
 }

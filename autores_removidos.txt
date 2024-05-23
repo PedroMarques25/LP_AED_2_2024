@@ -1,0 +1,5 @@
+
+Autor{nome='Alice', orcid='1', artigos=2}
+Autor{nome='BOB', orcid='2', artigos=2}
+Autor{nome='Alice', orcid='1'}
+Autor{nome='BOB', orcid='2'}
