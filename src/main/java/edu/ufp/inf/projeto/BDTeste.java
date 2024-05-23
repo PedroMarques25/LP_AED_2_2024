@@ -1,17 +1,18 @@
 package edu.ufp.inf.projeto;
-
+import java.util.Date;
 public class BDTeste {
     public static void main(String[] args) {
         BD bd = new BD();
-
+        Date di = new Date( );
+        Date df = new Date( );
         Autor autor1 = new Autor("Alice", "ALI", "FERNADO",1,2,3,4);
         Autor autor2 = new Autor("BOB", "BO", "FERNADO",2,3,4,5);
 
         Artigo artigo1 = new Artigo("Artigo 1", "Journal", "?","journal",2021,2,3,4);
         Artigo artigo2 = new Artigo("Artigo 1", "conferencia", "?","conferencia",2021,2,3,4);
 
-        Publicacao publicacao1 = new Publicacao("Journal of Testing", "conferencia");
-        Publicacao publicacao2 = new Publicacao("Conference on Testing", "jornal");
+          Conferencia conferencia1 = new Conferencia(1, "rua",di,df,"aaa","conferencia");
+          Journal journal1 = new Journal("Conference on Testing", 3,5,7,"bbb","journal");
 
         artigo1.adicionarAutor(autor1);
         artigo1.adicionarAutor(autor2);
@@ -21,13 +22,14 @@ public class BDTeste {
         bd.adicionarAutor(autor2);
         bd.adicionarArtigo(artigo1);
         bd.adicionarArtigo(artigo2);
-        bd.adicionarPublicacao(publicacao1);
-        bd.adicionarPublicacao(publicacao2);
+        bd.adicionarJournal(journal1);
+        bd.adicionarConferencia(conferencia1);
 
         // Verificar se os dados foram adicionados corretamente
         assert bd.buscarAutor("ORCID1") != null;
         assert bd.buscarArtigo("Artigo 1") != null;
-        assert bd.buscarPublicacao("Journal of Testing") != null;
+        assert bd.buscarJournal("bbb") != null;
+        assert bd.buscarConferencia("aaa") != null;
 
         // Remover um autor e verificar se foi removido corretamente
         bd.removerAutor("ORCID1");
@@ -38,8 +40,8 @@ public class BDTeste {
         assert bd.buscarArtigo("Artigo 2") == null;
 
         // Remover uma publicação e verificar se foi removida corretamente
-        bd.removerPublicacao("Journal of Testing");
-        assert bd.buscarPublicacao("Journal of Testing") == null;
+        bd.removerJournal("bbb");
+        assert bd.buscarJournal("bbb") == null;
 
         System.out.println("Todos os testes passaram.");
     }

@@ -12,12 +12,16 @@ import java.util.Map;
 public class BD {
   private Map<Integer, Autor> autores;
   private Map<String, Artigo> artigos;
-  private Map<String, Publicacao> publicacoes;
+  private RedBlackBST<String, Publicacao> publicacoes;
+  private RedBlackBST<String,Journal> journais;
+  private RedBlackBST<String, Conferencia> conferencias;
 
   public BD() {
     this.autores = new HashMap<>();
     this.artigos = new HashMap<>();
-    this.publicacoes = new HashMap<>();
+    this.publicacoes = new RedBlackBST<>();
+    this.journais = new RedBlackBST<>();
+    this.conferencias = new RedBlackBST<>();
   }
 
   // Adiciona um autor à base de dados
@@ -31,8 +35,14 @@ public class BD {
   }
 
   // Adiciona uma publicação à base de dados
-  public void adicionarPublicacao(Publicacao publicacao) {
-    publicacoes.put(publicacao.getNome(), publicacao);
+
+  public void adicionarJournal(Journal journal) {
+    publicacoes.put(journal.getNome(), journal);
+    journais.put(journal.getNome(), journal);
+  }
+  public void adicionarConferencia(Conferencia conferencia) {
+    publicacoes.put(conferencia.getNome(), conferencia);
+    conferencias.put(conferencia.getNome(), conferencia);
   }
 
   // Remove um autor da base de dados
@@ -62,8 +72,13 @@ public class BD {
   }
 
   // Remove uma publicação da base de dados
-  public void removerPublicacao(String nome) {
-    publicacoes.remove(nome);
+  public void removerConferencia(String nome) {
+    conferencias.delete(nome);
+    publicacoes.delete(nome);
+  }
+  public void removerJournal(String nome) {
+    journais.delete(nome);
+    publicacoes.delete(nome);
   }
 
   public Autor buscarAutor(String orcid) {
@@ -74,7 +89,10 @@ public class BD {
     return artigos.get(titulo);
   }
 
-  public Publicacao buscarPublicacao(String nome) {
-    return publicacoes.get(nome);
+  public Publicacao buscarConferencia(String nome) {
+    return conferencias.get(nome);
+  }
+  public Publicacao buscarJournal(String nome) {
+    return journais.get(nome);
   }
 }

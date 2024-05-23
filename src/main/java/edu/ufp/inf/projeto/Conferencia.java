@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Conferencia {
+public class Conferencia extends Publicacao{
   private int numEdicao;
   private String local;
   private Date dataInicio;
@@ -12,15 +12,16 @@ public class Conferencia {
 
   // Lista estática de conferencias
   private static List<Conferencia> conferencias = new ArrayList<>();
-  public Conferencia (int numEdicao, String local, Date dataInicio, Date dataFim) {
+  public Conferencia (int numEdicao, String local, Date dataInicio, Date dataFim,String nome,String tipo) {
 
+    super(nome,tipo);
     this.setNumEdicao(numEdicao);
     this.setLocal(local);
     this.setDataInicio(dataInicio);
     this.setDataFim(dataFim);
-
   }
   // Getters
+
   public int getNumEdicao() {
     return numEdicao;
   }
@@ -55,8 +56,8 @@ public class Conferencia {
   }
 
   // Métodos para adicionar, remover e atualizar conferencias
-  public static Conferencia adicionarConferencia(int numEdicao, String local, Date dataInicio, Date dataFim) {
-    Conferencia conferencia = new Conferencia(numEdicao,  local,  dataInicio, dataFim);
+  public static Conferencia adicionarConferencia(int numEdicao, String local, Date dataInicio, Date dataFim,String nome,String tipo) {
+    Conferencia conferencia = new Conferencia(numEdicao,  local,  dataInicio, dataFim,nome,tipo);
     conferencias.add(conferencia);
     return conferencia;
   }

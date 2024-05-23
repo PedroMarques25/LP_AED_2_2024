@@ -4,7 +4,7 @@ package edu.ufp.inf.projeto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Journal {
+public class Journal extends Publicacao{
   private String publisher;
   private int periodicidade;
   private int JCR_IF;
@@ -12,8 +12,8 @@ public class Journal {
 
   // Lista estática de journals
   private static List<Journal> journals = new ArrayList<>();
-  public Journal (String publisher, int periodicidade, int JCR_IF, int scopus_IF) {
-
+  public Journal (String publisher, int periodicidade, int JCR_IF, int scopus_IF,String nome,String tipo) {
+    super(nome,tipo);
     this.setPublisher(publisher);
     this.setPeriodicidade(periodicidade);
     this.setJCR_IF(JCR_IF);
@@ -55,8 +55,8 @@ public class Journal {
   }
 
   // Métodos para adicionar, remover e atualizar journals
-  public static Journal adicionarJournal(String publisher, int periodicidade, int JCR_IF, int scopus_IF) {
-    Journal journal = new Journal( publisher,  periodicidade,  JCR_IF, scopus_IF);
+  public static Journal adicionarJournal(String publisher, int periodicidade, int JCR_IF, int scopus_IF,String nome,String tipo) {
+    Journal journal = new Journal( publisher,  periodicidade,  JCR_IF, scopus_IF, nome, tipo);
 
     journals.add(journal);
     return journal;
