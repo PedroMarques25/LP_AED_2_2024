@@ -9,6 +9,7 @@ public class Conferencia extends Publicacao{
   private String local;
   private Date dataInicio;
   private Date dataFim;
+  private List<Artigo> artigos;
 
   // Lista estática de conferencias
   private static List<Conferencia> conferencias = new ArrayList<>();
@@ -19,6 +20,7 @@ public class Conferencia extends Publicacao{
     this.setLocal(local);
     this.setDataInicio(dataInicio);
     this.setDataFim(dataFim);
+    this.artigos = new ArrayList<>();
   }
   // Getters
 
@@ -53,6 +55,17 @@ public class Conferencia extends Publicacao{
 
   public void setDataFim(Date dataFim) {
     this.dataFim = dataFim;
+  }
+  public List<Artigo> getArtigos() {
+    return artigos;
+  }
+
+  public void adicionarArtigo(Artigo artigo) {
+    artigos.add(artigo);
+  }
+
+  public void removerArtigo(Artigo artigo) {
+    artigos.remove(artigo);
   }
 
   // Métodos para adicionar, remover e atualizar conferencias
