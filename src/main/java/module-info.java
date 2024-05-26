@@ -14,6 +14,7 @@ module edu.ufp.inf.aed2_lp2_2324_students {
     requires java.logging;
     requires annotations;
     requires edu.princeton.cs.algs4;
+    requires javafx.swing;
 
 
     opens edu.ufp.inf.lp2._06_gui_javafx.helloword to javafx.fxml;

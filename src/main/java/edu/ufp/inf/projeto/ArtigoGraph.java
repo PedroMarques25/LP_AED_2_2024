@@ -4,7 +4,6 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.EdgeWeightedDigraph;
 import edu.princeton.cs.algs4.DirectedEdge;
 import edu.princeton.cs.algs4.DijkstraSP;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +24,9 @@ public class ArtigoGraph {
         digrafo.addEdge(artigo1, artigo2);
     }
 
-    // Método para listar artigos por journal/conferência e período
     public List<Artigo> listarArtigosPorJournalOuConferenciaEPeriodo(String journalOuConferencia, int inicio, int fim) {
         List<Artigo> result = new ArrayList<>();
-        for (Artigo artigo : artigos) {
+        for (Artigo artigo : Artigo.getArtigos()) {
             if (artigo.getTipoDePublicacao().equals(journalOuConferencia) &&
                     artigo.getAno() >= inicio && artigo.getAno() <= fim) {
                 result.add(artigo);
@@ -114,39 +112,5 @@ public class ArtigoGraph {
         for (int w : digrafo.adj(v)) {
             if (!marked[w]) dfs(w, marked);
         }
-    }
-}
-
-public static void main(String[] args) {
-    // Criar um grafo de artigos com espaço para 100 artigos
-    ArtigoGraph artigoGraph = new ArtigoGraph(100);
-
-    // Adicionar alguns artigos
-    Artigo artigo1 = new Artigo("Artigo 1", "Palavras-chave 1", "Resumo 1", "Journal", 2010, 100, 10, 5);
-    Artigo artigo2 = new Artigo("Artigo 2", "Palavras-chave 2", "Resumo 2", "Journal", 2011, 150, 15, 7);
-    Artigo artigo3 = new Artigo("Artigo 3", "Palavras-chave 3", "Resumo 3", "Conference", 2015, 200, 20, 10);
-    Artigo artigo4 = new Artigo("Artigo 4", "Palavras-chave 4", "Resumo 4", "Conference", 2017, 250, 25, 15);
-
-    // Adicionar artigos ao grafo
-    artigoGraph.adicionarArtigo(artigo1);
-    artigoGraph.adicionarArtigo(artigo2);
-    artigoGraph.adicionarArtigo(artigo3);
-    artigoGraph.adicionarArtigo(artigo4);
-
-    // Adicionar citações entre artigos (exemplo)
-    artigoGraph.adicionarCitação(0, 1);
-    artigoGraph.adicionarCitação(1, 2);
-    artigoGraph.adicionarCitação(2, 3);
-
-    // Listar artigos por Journal e período
-    String journalOuConferencia = "Journal";
-    int inicio = 2009;
-    int fim = 2012;
-
-    List<Artigo> artigosPorJournalEPeriodo = artigoGraph.listarArtigosPorJournalOuConferenciaEPeriodo(journalOuConferencia, inicio, fim);
-
-    // Exibir os artigos encontrados
-    for (Artigo artigo : artigosPorJournalEPeriodo) {
-        System.out.println("Artigo encontrado: " + artigo.getTitulo() + ", Ano: " + artigo.getAno());
     }
 }

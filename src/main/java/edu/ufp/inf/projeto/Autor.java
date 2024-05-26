@@ -1,9 +1,8 @@
 package edu.ufp.inf.projeto;
 
 
-import edu.ufp.inf.lp2._0_videoclub.Movie;
-
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Autor {
@@ -38,7 +37,7 @@ public class Autor {
         return nomeCurto;
     }
 
-    public String getFiliacao() {
+    public Collection<?> getFiliacao() {
         return filiacao;
     }
 

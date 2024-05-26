@@ -18,7 +18,7 @@ public class Artigo {
   // Lista estática de artigos
   public static List<Artigo> artigos = new ArrayList<>();
 
-  public Artigo (String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia) {
+  public Artigo(String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia) {
     this.setTitulo(titulo);
     this.setPalavrasChave(palavrasChave);
     this.setAbstractTexto(abstractTexto);
@@ -30,6 +30,7 @@ public class Artigo {
     this.autores = new ArrayList<>();
     this.referencias = new ArrayList<>();
   }
+
   // Getters
   public String getTitulo() {
     return titulo;
@@ -124,7 +125,7 @@ public class Artigo {
 
   // Métodos para adicionar, remover e atualizar artigos
   public static Artigo adicionarArtigo(String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia) {
-    Artigo artigo = new Artigo(titulo, palavrasChave, abstractTexto, tipoDePublicacao,  ano,  numDownloads,  numViewspDia, numLikespDia);
+    Artigo artigo = new Artigo(titulo, palavrasChave, abstractTexto, tipoDePublicacao, ano, numDownloads, numViewspDia, numLikespDia);
     artigos.add(artigo);
     return artigo;
   }
@@ -157,4 +158,3 @@ public class Artigo {
             '}';
   }
 }
-
