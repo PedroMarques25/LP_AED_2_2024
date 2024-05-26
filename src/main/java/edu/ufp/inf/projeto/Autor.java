@@ -37,7 +37,7 @@ public class Autor {
         return nomeCurto;
     }
 
-    public Collection<?> getFiliacao() {
+    public String getFiliacao() {
         return filiacao;
     }
 

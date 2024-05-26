@@ -1,149 +1,147 @@
 package edu.ufp.inf.projeto;
 
+import edu.princeton.cs.algs4.*;
 import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.Bag;
-import edu.princeton.cs.algs4.BreadthFirstPaths;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import java.util.*;
 
 public class AutorGraph {
+    private List<Autor> autores;
+    private List<Artigo> artigos;
     private Graph grafo;
-    private Map<Integer, Autor> autores;
-    private Map<Integer, Bag<Integer>> colaboracoes;
-    private List<Artigo> artigos; // Presumindo que artigos seja um List<Artigo>
-    private Map<String, Integer> colaboracoesArtigos = new HashMap<>();
 
-    public AutorGraph(int numeroDeAutores) {
-        grafo = new Graph(numeroDeAutores);
-        autores = new HashMap<>(numeroDeAutores);
-        colaboracoes = new HashMap<>(numeroDeAutores);
+    public AutorGraph(int numAutores) {
+        autores = new ArrayList<>(numAutores);
         artigos = new ArrayList<>();
-        for (int i = 0; i < numeroDeAutores; i++) {
-            colaboracoes.put(i, new Bag<>());
-        }
+        grafo = new Graph(numAutores);
     }
 
     public void adicionarAutor(Autor autor) {
-        autores.put(autor.getORCID(), autor);
+        autores.add(autor);
     }
 
-    public void adicionarColaboracao(Autor autor1, Autor autor2) {
-        int id1 = autor1.getORCID();
-        int id2 = autor2.getORCID();
-        if (!colaboracoes.containsKey(id1)) {
-            colaboracoes.put(id1, new Bag<>());
+    public void adicionarArtigo(Artigo artigo) {
+        artigos.add(artigo);
+        for (Autor autor : artigo.getAutores()) {
+            autor.getArtigos().add(artigo);
         }
-        if (!colaboracoes.containsKey(id2)) {
-            colaboracoes.put(id2, new Bag<>());
-        }
-        colaboracoes.get(id1).add(id2);
-        colaboracoes.get(id2).add(id1);
-        grafo.addEdge(id1, id2);
-
-        adicionarColaboracaoArtigo(autor1, autor2);
     }
 
-    private void adicionarColaboracaoArtigo(Autor autor1, Autor autor2) {
-        String chave = autor1.getORCID() + "-" + autor2.getORCID();
-        colaboracoesArtigos.put(chave, colaboracoesArtigos.getOrDefault(chave, 0) + 1);
+    public void adicionarCoautoria(int idAutor1, int idAutor2) {
+        grafo.addEdge(idAutor1, idAutor2);
     }
 
-    public Iterable<Integer> obterColaboradores(int idAutor) {
-        return grafo.adj(idAutor);
-    }
-
-    public int calcularNumeroDeColaboradores(int idAutor) {
-        return grafo.degree(idAutor);
-    }
-
-    public int calcularNumeroDeArtigosEntreAutores(int idAutor1, int idAutor2) {
-        String chave = idAutor1 + "-" + idAutor2;
-        return colaboracoesArtigos.getOrDefault(chave, 0);
-    }
-
-    public int calcularCaminhoMaisCurto(int idAutor1, int idAutor2) {
-        BreadthFirstPaths bfs = new BreadthFirstPaths(grafo, idAutor1);
-        return bfs.distTo(idAutor2);
-    }
-
-    public AutorGraph criarSubGrafoPorInstituicoes(List<String> instituicoes) {
-        Set<Integer> vertices = new HashSet<>();
-        for (Autor autor : autores.values()) {
-            if (instituicoes.contains(autor.getFiliacao())) {
-                vertices.add(autor.getORCID());
-            }
-        }
-
-        AutorGraph subGrafo = new AutorGraph(vertices.size());
-        for (int v : vertices) {
-            for (int w : grafo.adj(v)) {
-                if (vertices.contains(w)) {
-                    subGrafo.adicionarColaboracao(autores.get(v), autores.get(w));
+    public List<Autor> listarAutoresPorInstituicoes(String[] Filiacao, boolean usarAND) {
+        List<Autor> resultado = new ArrayList<>();
+        for (Autor autor : autores) {
+            boolean inclui = usarAND;
+            for (String instituicao : Filiacao) {
+                if (usarAND) {
+                    if (!autor.getFiliacao().contains(instituicao)) {
+                        inclui = false;
+                        break;
+                    }
+                } else {
+                    if (autor.getFiliacao().contains(instituicao)) {
+                        inclui = true;
+                        break;
+                    }
                 }
             }
-        }
-        return subGrafo;
-    }
-
-    public boolean verificarConectividade() {
-        if (grafo.V() == 0) {
-            return true; // Grafo vazio é considerado conectado
-        }
-        boolean[] marcado = new boolean[grafo.V()];
-        dfs(0, marcado); // Inicia a busca a partir do primeiro vértice
-        for (boolean visitado : marcado) {
-            if (!visitado) {
-                return false; // Se algum vértice não foi visitado, o grafo não é conectado
-            }
-        }
-        return true; // Todos os vértices foram visitados, o grafo é conectado
-    }
-
-    private void dfs(int v, boolean[] marcado) {
-        marcado[v] = true;
-        for (int w : grafo.adj(v)) {
-            if (!marcado[w]) {
-                dfs(w, marcado);
-            }
-        }
-    }
-
-    public List<Autor> listarAutoresPorInstituicoes(List<String> instituicoes, boolean combinarOperadores) {
-        List<Autor> resultado = new ArrayList<>();
-        for (Autor autor : autores.values()) {
-            if (combinarOperadores && instituicoes.contains(autor.getFiliacao()) ||
-                    !combinarOperadores && !Collections.disjoint(autor.getFiliacao(), instituicoes)) {
+            if (inclui) {
                 resultado.add(autor);
             }
         }
         return resultado;
     }
 
-    public void adicionarArtigos(List<Artigo> artigos) {
-        this.artigos.addAll(artigos); // Adiciona os artigos à lista interna
-        for (Artigo artigo : artigos) {
-            for (Autor autor1 : artigo.getAutores()) {
-                for (Autor autor2 : artigo.getAutores()) {
-                    if (!autor1.equals(autor2)) {
-                        adicionarColaboracao(autor1, autor2);
+    public int calcularColaboradores(int idAutor) {
+        return grafo.degree(idAutor);
+    }
+
+    public int calcularArtigosEscritosEntreAutores(int idAutor1, int idAutor2) {
+        Autor autor1 = autores.get(idAutor1);
+        Autor autor2 = autores.get(idAutor2);
+        int contagem = 0;
+
+        for (Artigo artigo : autor1.getArtigos()) {
+            if (artigo.getAutores().contains(autor2)) {
+                contagem++;
+            }
+        }
+
+        return contagem;
+    }
+
+    public List<Integer> calcularCaminhoMaisCurto(int idAutor1, int idAutor2) {
+        BreadthFirstPaths bfs = new BreadthFirstPaths(grafo, idAutor1);
+        List<Integer> caminho = new ArrayList<>();
+        for (int v : bfs.pathTo(idAutor2)) {
+            caminho.add(v);
+        }
+        return caminho;
+    }
+
+    public Graph criarSubGrafoPorInstituicoes(String[] filiacoes) {
+        Graph subGrafo = new Graph(grafo.V());
+        for (int v = 0; v < grafo.V(); v++) {
+            Autor autor = autores.get(v);
+            for (String instituicao : filiacoes) {
+                if (autor.getFiliacao().contains(instituicao)) {
+                    for (int w : grafo.adj(v)) {
+                        if (autores.get(w).getFiliacao().contains(instituicao)) {
+                            subGrafo.addEdge(v, w);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return subGrafo;
+    }
+
+    public boolean verificarConexidade(Graph g) {
+        CC cc = new CC(g);
+        return cc.count() == 1;
+    }
+
+    public List<Autor> autoresQueCitaramArtigos(List<Integer> idsArtigos, int inicio, int fim) {
+        List<Autor> autoresCitadores = new ArrayList<>();
+        for (Autor autor : autores) {
+            for (Artigo artigo : autor.getArtigos()) {
+                if (artigo.getAno() >= inicio && artigo.getAno() <= fim) {
+                    for (Integer idArtigo : idsArtigos) {
+                        if (artigo.getID() == idArtigo) {
+                            if (!autoresCitadores.contains(autor)) {
+                                autoresCitadores.add(autor);
+                            }
+                        }
                     }
                 }
             }
         }
+        return autoresCitadores;
     }
 
-    public List<Artigo> listarCitaçõesPorJournalEPeriodo(String journal, int inicio, int fim) {
-        List<Artigo> resultado = new ArrayList<>();
-        for (Artigo artigo : artigos) { // Assumindo que artigos é um List<Artigo>
-            if (artigo.getTipoDePublicacao().equals(journal) && artigo.getAno() >= inicio && artigo.getAno() <= fim) {
-                resultado.add(artigo);
+    public List<Artigo> listarCitaçõesDeArtigosPorJournalEPeriodo(String journal, int inicio, int fim) {
+        List<Artigo> artigosCitados = new ArrayList<>();
+        for (Artigo artigo : artigos) {
+            if (artigo.getTipoDePublicacao().equals(journal) &&
+                    artigo.getAno() >= inicio &&
+                    artigo.getAno() <= fim) {
+                artigosCitados.addAll(artigo.getReferencias());
             }
         }
-        return resultado;
+        return artigosCitados;
     }
 
-    // Métodos auxiliares para buscar autores e artigos por suas propriedades
-    public Autor buscarAutor(int orcid) {
-        return autores.get(orcid);
+    public Graph getGrafo() {
+        return grafo;
     }
 }
+
+
+

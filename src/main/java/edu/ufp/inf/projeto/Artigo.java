@@ -14,11 +14,12 @@ public class Artigo {
   private int numDownloads;
   private int numViewspDia;
   private int numLikespDia;
+  private int ID;
 
   // Lista estática de artigos
   public static List<Artigo> artigos = new ArrayList<>();
 
-  public Artigo(String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia) {
+  public Artigo(String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia,int ID) {
     this.setTitulo(titulo);
     this.setPalavrasChave(palavrasChave);
     this.setAbstractTexto(abstractTexto);
@@ -29,6 +30,7 @@ public class Artigo {
     this.setNumLikespDia(numLikespDia);
     this.autores = new ArrayList<>();
     this.referencias = new ArrayList<>();
+    this.ID=ID;
   }
 
   // Getters
@@ -63,6 +65,9 @@ public class Artigo {
   public int getNumLikespDia() {
     return numLikespDia;
   }
+  public int getID() {
+    return ID;
+  }
 
   // Setters
   public void setTitulo(String titulo) {
@@ -83,6 +88,9 @@ public class Artigo {
 
   public void setAno(int ano) {
     this.ano = ano;
+  }
+  public void setID(int id) {
+    this.ID = id;
   }
 
   public void setNumDownloads(int numDownloads) {
@@ -124,8 +132,8 @@ public class Artigo {
   }
 
   // Métodos para adicionar, remover e atualizar artigos
-  public static Artigo adicionarArtigo(String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia) {
-    Artigo artigo = new Artigo(titulo, palavrasChave, abstractTexto, tipoDePublicacao, ano, numDownloads, numViewspDia, numLikespDia);
+  public static Artigo adicionarArtigo(String titulo, String palavrasChave, String abstractTexto, String tipoDePublicacao, int ano, int numDownloads, int numViewspDia, int numLikespDia,int Id) {
+    Artigo artigo = new Artigo(titulo, palavrasChave, abstractTexto, tipoDePublicacao, ano, numDownloads, numViewspDia, numLikespDia,Id);
     artigos.add(artigo);
     return artigo;
   }

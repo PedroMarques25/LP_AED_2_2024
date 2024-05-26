@@ -11,10 +11,10 @@ public class BDTeste {
         Autor autor1 = new Autor("Alice", "ALI", "FERNADO", 1, 2, 3, 4);
         Autor autor2 = new Autor("Bob", "BO", "FERNADO", 2, 3, 4, 5);
 
-        Artigo artigo1 = new Artigo("Artigo 1", "Journal", "?", "journal", 2021, 2, 3, 4);
-        Artigo artigo2 = new Artigo("Artigo 2", "Conferencia", "?", "conferencia", 2021, 3, 4, 5);
-        Artigo artigo3 = new Artigo("Artigo 3", "Journal", "?", "journal", 2022, 4, 5, 6);
-        Artigo artigo4 = new Artigo("Artigo 4", "Conferencia", "?", "conferencia", 2023, 5, 6, 7);
+        Artigo artigo1 = new Artigo("Artigo 1", "Journal", "?", "journal", 2021, 2, 3, 4,1);
+        Artigo artigo2 = new Artigo("Artigo 2", "Conferencia", "?", "conferencia", 2021, 3, 4, 5,2);
+        Artigo artigo3 = new Artigo("Artigo 3", "Journal", "?", "journal", 2022, 4, 5, 6,3);
+        Artigo artigo4 = new Artigo("Artigo 4", "Conferencia", "?", "conferencia", 2023, 5, 6, 7,4);
 
         System.out.println("Inicializações Completas");
 

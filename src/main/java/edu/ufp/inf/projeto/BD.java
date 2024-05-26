@@ -211,5 +211,58 @@ public class BD {
     }
     return citacoes;
   }
+  public void gerarRelatorioAutores() {
+    System.out.println("Relatório de Autores:");
+    for (Autor autor : autores.values()) {
+      System.out.println("Nome: " + autor.getNome());
+      System.out.println("Afiliacao: " + autor.getFiliacao());
+      System.out.println("ORCID: " + autor.getORCID());
+      System.out.println("Número de Artigos: " + autor.getArtigos().size());
+      for (Artigo artigos : autor.getArtigos()) {
+        System.out.print(artigos.getTitulo() + " ");
+      }
+      System.out.println();
+      System.out.println("-------------------------");
+    }
+    System.out.println("Relatório de Artigos:");
+    for (Artigo artigo : artigos.values()) {
+      System.out.println("Título: " + artigo.getTitulo());
+      System.out.println("Ano: " + artigo.getAno());
+      System.out.println("Tipo de Publicação: " + artigo.getTipoDePublicacao());
+      System.out.println("Número de Downloads: " + artigo.getNumDownloads());
+      System.out.println("Número de Visualizações: " + artigo.getNumViewspDia());
+      System.out.println("Número de Likes: " + artigo.getNumLikespDia());
+      System.out.println("Número de Likes: " + artigo.getID());
+      System.out.print("Autores: ");
+      for (Autor autor : artigo.getAutores()) {
+        System.out.print(autor.getNome() + " ");
+      }
+      System.out.println();
+      for (Artigo artigos : artigo.getReferencias()) {
+        System.out.print(artigos.getTitulo() + " ");
+      }
+      System.out.println();
+      System.out.println("-------------------------");
+    }
+    System.out.println("Relatório de Journais:");
+    for (Journal journais : journais.values()) {
+      System.out.println("Nome: " + journais.getNome());
+      System.out.println("Tipo: " + journais.getPublisher());
+      for (Artigo artigos : journais.getArtigos()) {
+        System.out.print(artigos.getTitulo() + " ");
+      }
+      System.out.println("-------------------------");
+    }
+    System.out.println("Relatório de Conferencias:");
+    for (Conferencia conferencias : conferencias.values()) {
+      System.out.println("Nome: " + conferencias.getNome());
+      System.out.println("Tipo: " + conferencias.getLocal());
+      for (Artigo artigos : conferencias.getArtigos()) {
+        System.out.print(artigos.getTitulo() + " ");
+      }
+      System.out.println("-------------------------");
+    }
+
+  }
 }
 
