@@ -11,11 +11,11 @@ public class ArtigoGraphTeste {
         ArtigoGraph grafo = new ArtigoGraph(10);
 
         // Adicionar alguns artigos
-        grafo.adicionarArtigo(new Artigo("Artigo 1", "Journal", "?", "journal", 2021, 2, 3, 4,1));
-        grafo.adicionarArtigo(new Artigo("Artigo 2", "Conferencia", "?", "conferencia", 2021, 3, 4, 5,2));
-        grafo.adicionarArtigo(new Artigo("Artigo 3", "Journal", "?", "journal", 2022, 4, 5, 6,3));
-        grafo.adicionarArtigo(new Artigo("Artigo 4", "Conferencia", "?", "conferencia", 2023, 5, 6, 7,4));
-        grafo.adicionarArtigo(new Artigo("Artigo 5", "Conferencia", "?", "conferencia", 2023, 5, 6, 7,5));
+        grafo.adicionarArtigo(new Artigo("Artigo 1", "Journal", "?", "journal", 2021, 2, 3, 4,0));
+        grafo.adicionarArtigo(new Artigo("Artigo 2", "Conferencia", "?", "conferencia", 2021, 3, 4, 5,1));
+        grafo.adicionarArtigo(new Artigo("Artigo 3", "Journal", "?", "journal", 2022, 4, 5, 6,2));
+        grafo.adicionarArtigo(new Artigo("Artigo 4", "Conferencia", "?", "conferencia", 2023, 5, 6, 7,3));
+        grafo.adicionarArtigo(new Artigo("Artigo 5", "Conferencia", "?", "conferencia", 2023, 5, 6, 7,4));
 
         // Adicionar algumas citações
         grafo.adicionarCitação(0, 1); // Artigo A cita Artigo B
@@ -34,22 +34,22 @@ public class ArtigoGraphTeste {
 
         // Testar calcular citações de segunda ordem
         int citacoesDeSegundaOrdem = grafo.calcularCitaçõesDeSegundaOrdem(1); // Esperado: 1 (Artigo B -> Artigo C -> Artigo D)
-        System.out.println("Citações de segunda ordem do Artigo B: " + citacoesDeSegundaOrdem);
+        System.out.println("Citações de segunda ordem do Artigo 2: " + citacoesDeSegundaOrdem);
 
         // Testar calcular auto-citações
         int autoCitacoes = grafo.calcularAutoCitações(0); // Esperado: 1 (Artigo A -> Artigo B do mesmo autor)
-        System.out.println("Auto-citações do Artigo A: " + autoCitacoes);
+        System.out.println("Auto-citações do Artigo 1: " + autoCitacoes);
 
         // Testar calcular caminho mais curto
         Iterable<DirectedEdge> caminhoMaisCurto = grafo.calcularCaminhoMaisCurto(0, 3); // Esperado: A -> B -> C -> D
-        System.out.print("Caminho mais curto entre Artigo A e Artigo D: ");
+        System.out.print("Caminho mais curto entre Artigo 1 e Artigo 4: ");
         for (DirectedEdge edge : caminhoMaisCurto) {
             System.out.print(edge + " ");
         }
         System.out.println();
 
         // Testar criar sub-grafo por tipo
-        Digraph subGrafoJournal = grafo.criarSubGrafoPorTipo("Journal");
+        Digraph subGrafoJournal = grafo.criarSubGrafoPorTipo("Artigo 3");
         System.out.println("Sub-grafo apenas com artigos de journals: " + subGrafoJournal);
 
         // Testar verificar conexidade

@@ -181,36 +181,6 @@ public class BD {
     return artigosEncontrados;
   }
 
-  public List<Autor> buscarAutoresQueCitaramArtigosEPeriodo(List<String> titulosArtigos, int anoInicio, int anoFim) {
-    List<Autor> autoresEncontrados = new ArrayList<>();
-    for (Artigo artigo : artigos.values()) {
-      if (artigo.getAno() >= anoInicio && artigo.getAno() <= anoFim) {
-        for (Artigo referencia : artigo.getReferencias()) {
-          if (titulosArtigos.contains(referencia.getTitulo())) {
-            autoresEncontrados.addAll(artigo.getAutores());
-            break;
-          }
-        }
-      }
-    }
-    return autoresEncontrados;
-  }
-
-  // Função para buscar as citações de todos os artigos de um journal para um determinado período
-  public List<Artigo> buscarCitaçõesDeJournalPeriodo(String journalName, int anoInicio, int anoFim) {
-    List<Artigo> citacoes = new ArrayList<>();
-
-    Journal journal = buscarJournal(journalName);
-
-    if (journal != null) {
-      for (Artigo artigo : journal.getArtigos()) {
-        if (artigo.getAno() >= anoInicio && artigo.getAno() <= anoFim) {
-            citacoes.addAll(artigo.getReferencias());
-        }
-      }
-    }
-    return citacoes;
-  }
   public void gerarRelatorioAutores() {
     System.out.println("Relatório de Autores:");
     for (Autor autor : autores.values()) {

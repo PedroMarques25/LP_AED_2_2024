@@ -14,10 +14,6 @@ public class AutorGraphTeste {
 
         // Adicionar alguns autores
 
-
-
-
-        grafo.adicionarAutor(new Autor("Autor 5", "5", "Instituição C",6,7,8,5));
         Autor autor1 = new Autor("Autor 1", "1", "Instituição A",2,3,4,1);
         Autor autor2 = new Autor("Autor 3", "3", "Instituição B",4,5,6,3);
         Autor autor3 = new Autor("Autor 2", "2", "Instituição B",3,4,5,2);
@@ -45,27 +41,27 @@ public class AutorGraphTeste {
         grafo.adicionarArtigo(artigo5);
 
         // Adicionar algumas coautorias
-        grafo.adicionarCoautoria(0, 1); // Autor 1 e Autor 2
-        grafo.adicionarCoautoria(1, 2); // Autor 2 e Autor 3
-        grafo.adicionarCoautoria(2, 3); // Autor 3 e Autor 4
-        grafo.adicionarCoautoria(3, 4); // Autor 4 e Autor 5
-        grafo.adicionarCoautoria(4, 0); // Autor 5 e Autor 1
+        grafo.adicionarCoautoria(1, 2); // Autor 1 e Autor 2
+        grafo.adicionarCoautoria(2, 3); // Autor 2 e Autor 3
+        grafo.adicionarCoautoria(3, 4); // Autor 3 e Autor 4
+        grafo.adicionarCoautoria(4, 5); // Autor 4 e Autor 5
+        grafo.adicionarCoautoria(4, 1); // Autor 5 e Autor 1
 
         // Testar listar autores por instituições
-        List<Autor> autoresInstituicaoA = grafo.listarAutoresPorInstituicoes(new String[]{"Instituição A"}, false);
+        List<Autor> autoresInstituicaoA = grafo.listarAutoresPorInstituicoes(new String[]{"Instituição A"});
         System.out.println("Autores da Instituição A: " + autoresInstituicaoA);
 
         // Testar calcular colaboradores
-        int colaboradoresAutor1 = grafo.calcularColaboradores(0); // Esperado: 2
+        int colaboradoresAutor1 = grafo.calcularColaboradores(1); // Esperado: 2
         System.out.println("Número de colaboradores do Autor 1: " + colaboradoresAutor1);
 
         // Testar calcular artigos escritos entre dois autores
-        int artigosEntreAutor1EAutor2 = grafo.calcularArtigosEscritosEntreAutores(0, 1); // Esperado: 1
+        int artigosEntreAutor1EAutor2 = grafo.calcularArtigosEscritosEntreAutores(1, 2); // Esperado: 1
         System.out.println("Número de artigos escritos entre Autor 1 e Autor 2: " + artigosEntreAutor1EAutor2);
 
         // Testar calcular caminho mais curto entre dois autores
-        List<Integer> caminhoMaisCurto = grafo.calcularCaminhoMaisCurto(0, 3); // Esperado: 0 -> 1 -> 2 -> 3
-        System.out.print("Caminho mais curto entre Autor 1 e Autor 4: ");
+        List<Integer> caminhoMaisCurto = grafo.calcularCaminhoMaisCurto(1, 3); // Esperado:  1 -> 2 -> 3
+        System.out.print("Caminho mais curto entre Autor 1 e Autor 3: ");
         for (int v : caminhoMaisCurto) {
             System.out.print(v + " ");
         }
@@ -80,12 +76,12 @@ public class AutorGraphTeste {
         System.out.println("O grafo principal é conexo? " + conexo);
 
         // Testar autores que citaram artigos
-        List<Integer> idsArtigos = List.of(0, 1); // IDs dos artigos
-        List<Autor> autoresCitadores = grafo.autoresQueCitaramArtigos(idsArtigos, 2020, 2024);
+
+        List<Autor> autoresCitadores = grafo.autoresQueCitaramArtigos(List.of(artigo1,artigo2,artigo3), 2020, 2024);
         System.out.println("Autores que citaram artigos entre 2022-01-01 e 2022-12-31: " + autoresCitadores);
 
         // Testar listar citações de artigos por journal e período
-        List<Artigo> artigosCitados = grafo.listarCitaçõesDeArtigosPorJournalEPeriodo("Journal 1", 2020, 2024);
-        System.out.println("Artigos citados do Journal 1 entre 2022-01-01 e 2022-12-31: " + artigosCitados);
+        //List<Artigo> artigosCitados = grafo.listarCitaçõesDeArtigosPorJournalEPeriodo(artigo3, 2020, 2024);
+        //System.out.println("Artigos citados do Journal 1 entre 2022-01-01 e 2022-12-31: " + artigosCitados);
     }
 }

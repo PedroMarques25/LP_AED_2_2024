@@ -5,9 +5,6 @@ import edu.princeton.cs.algs4.Graph;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import java.util.*;
-
 public class AutorGraph {
     private List<Autor> autores;
     private List<Artigo> artigos;
@@ -34,27 +31,15 @@ public class AutorGraph {
         grafo.addEdge(idAutor1, idAutor2);
     }
 
-    public List<Autor> listarAutoresPorInstituicoes(String[] Filiacao, boolean usarAND) {
+    public List<Autor> listarAutoresPorInstituicoes(String[] Filiacao) {
         List<Autor> resultado = new ArrayList<>();
         for (Autor autor : autores) {
-            boolean inclui = usarAND;
             for (String instituicao : Filiacao) {
-                if (usarAND) {
-                    if (!autor.getFiliacao().contains(instituicao)) {
-                        inclui = false;
-                        break;
-                    }
-                } else {
-                    if (autor.getFiliacao().contains(instituicao)) {
-                        inclui = true;
-                        break;
+                if (autor.getFiliacao().contains(instituicao)) {
+                     resultado.add(autor);
                     }
                 }
             }
-            if (inclui) {
-                resultado.add(autor);
-            }
-        }
         return resultado;
     }
 
@@ -108,16 +93,14 @@ public class AutorGraph {
         return cc.count() == 1;
     }
 
-    public List<Autor> autoresQueCitaramArtigos(List<Integer> idsArtigos, int inicio, int fim) {
+    public List<Autor> autoresQueCitaramArtigos(List<Artigo> Artigos, int inicio, int fim) {
         List<Autor> autoresCitadores = new ArrayList<>();
         for (Autor autor : autores) {
             for (Artigo artigo : autor.getArtigos()) {
                 if (artigo.getAno() >= inicio && artigo.getAno() <= fim) {
-                    for (Integer idArtigo : idsArtigos) {
-                        if (artigo.getID() == idArtigo) {
-                            if (!autoresCitadores.contains(autor)) {
+                    for (Artigo Artigo : Artigos) {
+                        if (Artigo.getReferencias() == Artigos) {
                                 autoresCitadores.add(autor);
-                            }
                         }
                     }
                 }
@@ -126,13 +109,12 @@ public class AutorGraph {
         return autoresCitadores;
     }
 
-    public List<Artigo> listarCitaçõesDeArtigosPorJournalEPeriodo(String journal, int inicio, int fim) {
+    public List<Artigo> listarCitaçõesDeArtigosPorJournalEPeriodo(Journal journal, int inicio, int fim) {
         List<Artigo> artigosCitados = new ArrayList<>();
-        for (Artigo artigo : artigos) {
-            if (artigo.getTipoDePublicacao().equals(journal) &&
-                    artigo.getAno() >= inicio &&
-                    artigo.getAno() <= fim) {
-                artigosCitados.addAll(artigo.getReferencias());
+        for (Artigo journais : journal.getArtigos()) {
+            if (journais.getAno() >= inicio &&
+                    journais.getAno() <= fim) {
+                artigosCitados.addAll(journais.getReferencias());
             }
         }
         return artigosCitados;
