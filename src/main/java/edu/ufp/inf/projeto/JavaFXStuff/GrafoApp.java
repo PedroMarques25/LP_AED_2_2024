@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.util.List;
 
-public class GrafoApp extends Application {
+/*public class GrafoApp extends Application {
 
     BD bd = new BD();
     @Override

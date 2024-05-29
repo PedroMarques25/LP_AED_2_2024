@@ -2,7 +2,15 @@ package edu.ufp.inf.projeto;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ */
 public class BDTeste {
+
+    /**
+     *
+     * @param args - hhvvhvh
+     */
     public static void main(String[] args) {
         BD bd = new BD();
         Date di = new Date();
@@ -57,6 +65,8 @@ public class BDTeste {
         bd.adicionarJournal(journal1);
         bd.adicionarConferencia(conferencia1);
 
+        bd.gerarRelatorio();
+
         // Verificar se os dados foram adicionados corretamente
         System.out.println("Verificando adições:");
         assert bd.buscarAutor("ALI") != null;
@@ -86,6 +96,8 @@ public class BDTeste {
         bd.removerJournal("bbb");
         assert bd.buscarJournal("bbb") == null;
         System.out.println("Journal removido corretamente.");
+
+
 
             System.out.println("Todos os testes passaram.");
         List<Artigo> top3Artigos = bd.getTop3ArtigosMaisVisualizados();

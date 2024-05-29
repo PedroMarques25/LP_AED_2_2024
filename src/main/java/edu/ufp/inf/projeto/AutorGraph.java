@@ -16,10 +16,18 @@ public class AutorGraph {
         grafo = new Graph(numAutores);
     }
 
+    /**
+     * Adicionar Autor ao Graph
+     * @param autor - graph
+     */
     public void adicionarAutor(Autor autor) {
         autores.add(autor);
     }
 
+    /**
+     * Adicionar Artigo ao Graph
+     * @param artigo - Artigo Graph
+     */
     public void adicionarArtigo(Artigo artigo) {
         artigos.add(artigo);
         for (Autor autor : artigo.getAutores()) {
@@ -27,10 +35,20 @@ public class AutorGraph {
         }
     }
 
+    /**
+     * Adicionar Coautoria
+     * @param idAutor1 autor1
+     * @param idAutor2 autor2
+     */
     public void adicionarCoautoria(int idAutor1, int idAutor2) {
         grafo.addEdge(idAutor1, idAutor2);
     }
 
+    /**
+     * Listar Autores por Filiação
+     * @param Filiacao - dos autores
+     * @return resultado
+     */
     public List<Autor> listarAutoresPorInstituicoes(String[] Filiacao) {
         List<Autor> resultado = new ArrayList<>();
         for (Autor autor : autores) {
@@ -43,10 +61,21 @@ public class AutorGraph {
         return resultado;
     }
 
+    /**
+     * Calcular Colaboradores
+     * @param idAutor Autor
+     * @return V
+     */
     public int calcularColaboradores(int idAutor) {
         return grafo.degree(idAutor);
     }
 
+    /**
+     * calcular artigos escritos por autores
+     * @param idAutor1 - autor1
+     * @param idAutor2 - autor2
+     * @return contagem de artigos
+     */
     public int calcularArtigosEscritosEntreAutores(int idAutor1, int idAutor2) {
         Autor autor1 = autores.get(idAutor1);
         Autor autor2 = autores.get(idAutor2);
@@ -61,6 +90,12 @@ public class AutorGraph {
         return contagem;
     }
 
+    /**
+     * calcular shortest path
+     * @param idAutor1 - autor1
+     * @param idAutor2 - autor2
+     * @return caminho
+     */
     public List<Integer> calcularCaminhoMaisCurto(int idAutor1, int idAutor2) {
         BreadthFirstPaths bfs = new BreadthFirstPaths(grafo, idAutor1);
         List<Integer> caminho = new ArrayList<>();
@@ -70,6 +105,11 @@ public class AutorGraph {
         return caminho;
     }
 
+    /**
+     * Criar subgrafo por Filiações
+     * @param filiacoes - do autor
+     * @return subgrafo
+     */
     public Graph criarSubGrafoPorInstituicoes(String[] filiacoes) {
         Graph subGrafo = new Graph(grafo.V());
         for (int v = 0; v < grafo.V(); v++) {
@@ -88,11 +128,23 @@ public class AutorGraph {
         return subGrafo;
     }
 
+    /**
+     * Verificação se os grafos tem conectividade
+     * @param g - grafo
+     * @return count
+     */
     public boolean verificarConexidade(Graph g) {
         CC cc = new CC(g);
         return cc.count() == 1;
     }
 
+    /**
+     * Autores que citaram Artigos
+     * @param Artigos - artigos
+     * @param inicio - ano inicio
+     * @param fim - ano fim
+     * @return autoresCitadores
+     */
     public List<Autor> autoresQueCitaramArtigos(List<Artigo> Artigos, int inicio, int fim) {
         List<Autor> autoresCitadores = new ArrayList<>();
         for (Autor autor : autores) {
@@ -109,6 +161,13 @@ public class AutorGraph {
         return autoresCitadores;
     }
 
+    /**
+     * listar citações de artigos por journal e periodo
+     * @param journal - Journal do Artigo
+     * @param inicio - ano inicio
+     * @param fim - ano fim
+     * @return artigosCitados
+     */
     public List<Artigo> listarCitaçõesDeArtigosPorJournalEPeriodo(Journal journal, int inicio, int fim) {
         List<Artigo> artigosCitados = new ArrayList<>();
         for (Artigo journais : journal.getArtigos()) {
@@ -120,6 +179,10 @@ public class AutorGraph {
         return artigosCitados;
     }
 
+    /**
+     * getGrafo
+     * @return grafo
+     */
     public Graph getGrafo() {
         return grafo;
     }

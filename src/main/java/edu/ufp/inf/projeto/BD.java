@@ -1,10 +1,5 @@
 package edu.ufp.inf.projeto;
 import java.io.*;
-import edu.princeton.cs.algs4.FlowEdge;
-import edu.princeton.cs.algs4.FlowNetwork;
-import edu.princeton.cs.algs4.RedBlackBST;
-import edu.princeton.cs.algs4.RedBlackBST.*;
-import edu.princeton.cs.algs4.ST;
 import edu.ufp.inf.lp2._01_intro.A;
 
 import java.util.ArrayList;

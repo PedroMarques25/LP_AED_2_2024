@@ -6,7 +6,7 @@ import edu.ufp.inf.projeto.AutorGraph;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.layout.StackPane;
 
-public class GrafoPane extends StackPane {
+/*public class GrafoPane extends StackPane {
 
     private mxGraph graph;
     private mxGraphComponent graphComponent;
@@ -43,5 +43,5 @@ public class GrafoPane extends StackPane {
 
         new mxCircleLayout(graph).execute(graph.getDefaultParent());
     }
-}
+}*/
 

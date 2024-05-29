@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.List;
 
-public class EntidadePane extends VBox {
+/*public class EntidadePane extends VBox {
 
     private TableView<Autor> tabelaAutores;
     private TableView<Artigo> tabelaArtigos;
@@ -36,4 +36,6 @@ public class EntidadePane extends VBox {
         tabelaArtigos.getItems().setAll(artigos);
     }
 }
+
+ */
 
