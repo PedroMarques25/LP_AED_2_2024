@@ -88,5 +88,11 @@ public class BDTeste {
         System.out.println("Journal removido corretamente.");
 
             System.out.println("Todos os testes passaram.");
+        List<Artigo> top3Artigos = bd.getTop3ArtigosMaisVisualizados();
+        System.out.println("Top 3 artigos com mais visualizações:");
+        for (Artigo artigo : top3Artigos) {
+            System.out.println(artigo.getTitulo() + " - Visualizações: " + artigo.getNumViewspDia());
+        }
+
     }
 }

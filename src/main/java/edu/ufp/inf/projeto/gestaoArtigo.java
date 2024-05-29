@@ -1,17 +1,18 @@
 package edu.ufp.inf.projeto;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public interface gestaoArtigo {
+     void adicionarArtigo(Artigo artigo) ;
+    void removerArtigo(String titulo) ;
 
-  void addArtigo(Double key,String value);
+     Artigo buscarArtigo(String titulo) ;
+    public List<Artigo> buscarArtigosPorAutorEPeriodo(String orcid, int anoInicio, int anoFim) ;
 
-  //Node addArtigoNode(Node node,Double key,String value);
-
-  void deleteArtigo(Double key);
-  
-  //Node deleteArtigoNode(Node h, Double key);
-  
-  Iterable<Double> getArtigo();
+    public List<Artigo> buscarArtigos(int anoInicio, int anoFim) ;
+    public List<Artigo> getTop3ArtigosMaisVisualizados() ;
   
 }

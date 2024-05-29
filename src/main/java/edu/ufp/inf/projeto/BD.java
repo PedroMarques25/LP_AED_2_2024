@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class BD {
+public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJournal{
   private Map<Integer, Autor> autores;
   private Map<String, Artigo> artigos;
   private Map<String, Publicacao> publicacoes;
@@ -28,28 +29,31 @@ public class BD {
   }
 
   // Adiciona um autor à base de dados
+  @Override
   public void adicionarAutor(Autor autor) {
     autores.put(autor.getORCID(), autor);
   }
 
   // Adiciona um artigo à base de dados
+  @Override
   public void adicionarArtigo(Artigo artigo) {
     artigos.put(artigo.getTitulo(), artigo);
   }
 
   // Adiciona uma publicação à base de dados
-
+@Override
   public void adicionarJournal(Journal journal) {
     publicacoes.put(journal.getNome(), journal);
     journais.put(journal.getNome(), journal);
   }
-
+@Override
   public void adicionarConferencia(Conferencia conferencia) {
     publicacoes.put(conferencia.getNome(), conferencia);
     conferencias.put(conferencia.getNome(), conferencia);
   }
 
   // Remove um autor da base de dados
+  @Override
   public void removerAutor(String orcid) {
     Autor autor = autores.remove(orcid);
     if (autor != null) {
@@ -60,6 +64,7 @@ public class BD {
   }
 
   // Remove um artigo da base de dados
+  @Override
   public void removerArtigo(String titulo) {
     Artigo artigo = artigos.remove(titulo);
     if (artigo != null) {
@@ -69,13 +74,10 @@ public class BD {
       for (Artigo referencia : artigo.getReferencias()) {
         referencia.removerReferencia(artigo);
       }
-      for (Artigo a : artigos.values()) {
-        a.removerReferencia(artigo);
-      }
     }
   }
 
-  private void gravarAutorRemovido(Autor autor) {
+  public void gravarAutorRemovido(Autor autor) {
     String filename = "autores_removidos.txt"; // Nome do ficheiro onde os autores serão armazenados
 
     try (FileWriter fw = new FileWriter(filename, true);
@@ -180,8 +182,13 @@ public class BD {
     }
     return artigosEncontrados;
   }
-
-  public void gerarRelatorioAutores() {
+  public List<Artigo> getTop3ArtigosMaisVisualizados() {
+    return artigos.values().stream()
+            .sorted((a1, a2) -> Integer.compare(a2.getNumViewspDia(), a1.getNumViewspDia()))
+            .limit(3)
+            .collect(Collectors.toList());
+  }
+  public void gerarRelatorio() {
     System.out.println("Relatório de Autores:");
     for (Autor autor : autores.values()) {
       System.out.println("Nome: " + autor.getNome());

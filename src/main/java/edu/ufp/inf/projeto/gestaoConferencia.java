@@ -1,18 +1,17 @@
 package edu.ufp.inf.projeto;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public interface gestaoConferencia {
 
-void addConferencia(Double key,String value);
+    void adicionarConferencia(Conferencia conferencia);
+     void removerConferencia(String nome);
+    Conferencia buscarConferencia(String nome);
+    Conferencia removerConferenciaParaFicheiro(String nome);
 
-//Node addConferenciaNode(Node node, Double key,String value);
-
-void deleteConferencia(Double key);
-  
-//Node deleteConferenciaNode(Node h, Double key);
-  
-Iterable<Double> getConferencias();
-  
 }
 

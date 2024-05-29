@@ -14,11 +14,11 @@ public class AutorGraphTeste {
 
         // Adicionar alguns autores
 
-        Autor autor1 = new Autor("Autor 1", "1", "Instituição A",2,3,4,1);
-        Autor autor2 = new Autor("Autor 3", "3", "Instituição B",4,5,6,3);
+        Autor autor1 = new Autor("Autor 1", "1", "Instituição A",2,3,4,0);
+        Autor autor2 = new Autor("Autor 3", "3", "Instituição B",4,5,6,1);
         Autor autor3 = new Autor("Autor 2", "2", "Instituição B",3,4,5,2);
-        Autor autor4 = new Autor("Autor 4", "4", "Instituição C",5,6,7,4);
-        Autor autor5 = new Autor("Autor 5", "5", "Instituição C",6,7,8,5);
+        Autor autor4 = new Autor("Autor 4", "4", "Instituição C",5,6,7,3);
+        Autor autor5 = new Autor("Autor 5", "5", "Instituição C",6,7,8,4);
 
         // Adicionar autores ao grafo
         grafo.adicionarAutor(autor1);
@@ -41,11 +41,11 @@ public class AutorGraphTeste {
         grafo.adicionarArtigo(artigo5);
 
         // Adicionar algumas coautorias
-        grafo.adicionarCoautoria(1, 2); // Autor 1 e Autor 2
-        grafo.adicionarCoautoria(2, 3); // Autor 2 e Autor 3
-        grafo.adicionarCoautoria(3, 4); // Autor 3 e Autor 4
-        grafo.adicionarCoautoria(4, 5); // Autor 4 e Autor 5
-        grafo.adicionarCoautoria(4, 1); // Autor 5 e Autor 1
+        grafo.adicionarCoautoria(0, 1); // Autor 1 e Autor 2
+        grafo.adicionarCoautoria(1, 2); // Autor 2 e Autor 3
+        grafo.adicionarCoautoria(2, 3); // Autor 3 e Autor 4
+        grafo.adicionarCoautoria(3, 4); // Autor 4 e Autor 5
+        grafo.adicionarCoautoria(3, 0); // Autor 5 e Autor 1
 
         // Testar listar autores por instituições
         List<Autor> autoresInstituicaoA = grafo.listarAutoresPorInstituicoes(new String[]{"Instituição A"});

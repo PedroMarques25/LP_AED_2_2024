@@ -1,15 +1,16 @@
 package edu.ufp.inf.projeto;
 import org.w3c.dom.Node;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public interface gestaoAutor {
-    void addAutor(Double key, String value);
+    void adicionarAutor(Autor autor) ;
+   void removerAutor(String orcid) ;
+    Autor buscarAutor(String orcid) ;
+ void gravarAutorRemovido(Autor autor) ;
 
-   //Node addAutorNode(Node node,Double key,String value);
-
-   void deleteAutor(Double key);
-  
-   //Node deleteAutorNode(Node h, Double key);
-  
-   Iterable<Double> getAutores();
-
+ void removerAutorParaFicheiro(int orcid) ;
 }

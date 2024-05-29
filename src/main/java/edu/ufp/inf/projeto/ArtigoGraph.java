@@ -36,7 +36,7 @@ public class ArtigoGraph {
     }
 
     public int calcularCitaçõesDePrimeiraOrdem(int idArtigo) {
-        return digrafo.outdegree(idArtigo);
+        return digrafo.indegree(idArtigo);
     }
 
     public int calcularCitaçõesDeSegundaOrdem(int idArtigo) {
