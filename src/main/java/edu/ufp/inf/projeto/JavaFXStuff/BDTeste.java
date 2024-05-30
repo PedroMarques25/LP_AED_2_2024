@@ -1,4 +1,5 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
+
 import java.util.Date;
 import java.util.List;
 

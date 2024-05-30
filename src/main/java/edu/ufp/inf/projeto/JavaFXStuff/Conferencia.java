@@ -1,10 +1,10 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Conferencia extends Publicacao{
+public class Conferencia extends Publicacao {
   private int numEdicao;
   private String nome;
   private String local;

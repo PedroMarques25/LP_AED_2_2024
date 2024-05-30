@@ -1,4 +1,4 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
 
 public class Publicacao {
   private String nome;

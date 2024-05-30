@@ -1,10 +1,5 @@
-package edu.ufp.inf.projeto;
-import org.w3c.dom.Node;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+package edu.ufp.inf.projeto.JavaFXStuff;
+import edu.ufp.inf.projeto.JavaFXStuff.Autor;
 
 public interface gestaoAutor {
     /**

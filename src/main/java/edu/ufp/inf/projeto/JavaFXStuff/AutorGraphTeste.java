@@ -1,9 +1,9 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
 
 import edu.princeton.cs.algs4.Graph;
-import edu.princeton.cs.algs4.BreadthFirstPaths;
-import edu.princeton.cs.algs4.CC;
-import java.util.ArrayList;
+import edu.ufp.inf.projeto.JavaFXStuff.Autor;
+import edu.ufp.inf.projeto.JavaFXStuff.AutorGraph;
+
 import java.util.List;
 
 public class AutorGraphTeste {

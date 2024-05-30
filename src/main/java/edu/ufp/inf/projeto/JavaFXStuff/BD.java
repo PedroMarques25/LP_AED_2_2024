@@ -1,6 +1,5 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
 import java.io.*;
-import edu.ufp.inf.lp2._01_intro.A;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJournal{
+public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJournal {
   private Map<Integer, Autor> autores;
   private Map<String, Artigo> artigos;
   private Map<String, Publicacao> publicacoes;

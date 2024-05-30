@@ -1,7 +1,9 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
 
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.DirectedEdge;
+import edu.ufp.inf.projeto.JavaFXStuff.ArtigoGraph;
+
 import java.util.List;
 
 public class ArtigoGraphTeste {

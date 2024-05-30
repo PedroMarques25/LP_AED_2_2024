@@ -4,7 +4,7 @@
  */
 
 package edu.ufp.inf.lp2._05_bt;
-
+/*
 import edu.ufp.inf.lp2._05_bt.*;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,17 +15,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ListIterator;
 
-/**
+
  *
  * @author rjm
- */
+
 public class TesteBrigadaTransitoApp {
 
     private static final String FILE_DELIMITER = ";";
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         TransitPolice transitBrigade = new TransitPolice();
         Driver c1 = new Driver("Pedro", "P-1234");
@@ -122,3 +120,4 @@ public class TesteBrigadaTransitoApp {
         return vehicleArrayList;
     }
 }
+*/

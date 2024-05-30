@@ -1,8 +1,8 @@
 package edu.ufp.inf.projeto.JavaFXStuff;
+/*
 
-
-import edu.ufp.inf.projeto.Autor;
-import edu.ufp.inf.projeto.AutorGraph;
+import edu.ufp.inf.projeto.JavaFXStuff.Autor;
+import edu.ufp.inf.projeto.JavaFXStuff.AutorGraph;
 import javafx.embed.swing.SwingNode;
 import javafx.scene.layout.StackPane;
 

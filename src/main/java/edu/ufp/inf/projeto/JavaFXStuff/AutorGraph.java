@@ -1,7 +1,8 @@
-package edu.ufp.inf.projeto;
+package edu.ufp.inf.projeto.JavaFXStuff;
 
 import edu.princeton.cs.algs4.*;
 import edu.princeton.cs.algs4.Graph;
+
 import java.util.ArrayList;
 import java.util.List;
 

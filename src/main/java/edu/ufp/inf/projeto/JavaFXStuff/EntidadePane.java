@@ -1,7 +1,7 @@
 package edu.ufp.inf.projeto.JavaFXStuff;
-
+/*
 import edu.ufp.inf.projeto.Artigo;
-import edu.ufp.inf.projeto.Autor;
+import edu.ufp.inf.projeto.JavaFXStuff.Autor;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 

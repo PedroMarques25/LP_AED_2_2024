@@ -1,7 +1,8 @@
 package edu.ufp.inf.projeto.JavaFXStuff;
+/*
 import edu.ufp.inf.projeto.Artigo;
-import edu.ufp.inf.projeto.Autor;
-import edu.ufp.inf.projeto.BD;
+import edu.ufp.inf.projeto.JavaFXStuff.Autor;
+import edu.ufp.inf.projeto.JavaFXStuff.BD;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
