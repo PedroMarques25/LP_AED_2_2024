@@ -23,31 +23,43 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
     this.conferencias = new HashMap<>();
   }
 
-  // Adiciona um autor à base de dados
   @Override
+  /*
+   * Adiciona um autor à base de dados
+   */
   public void adicionarAutor(Autor autor) {
     autores.put(autor.getORCID(), autor);
   }
 
-  // Adiciona um artigo à base de dados
+
   @Override
+  /*
+   * // Adiciona um artigo à base de dados
+   */
   public void adicionarArtigo(Artigo artigo) {
     artigos.put(artigo.getTitulo(), artigo);
   }
 
-  // Adiciona uma publicação à base de dados
+  /*
+   * Adiciona um artigo à base de dados
+   */
 @Override
   public void adicionarJournal(Journal journal) {
     publicacoes.put(journal.getNome(), journal);
     journais.put(journal.getNome(), journal);
   }
 @Override
+/*
+ * Adicionar conferencia
+ */
   public void adicionarConferencia(Conferencia conferencia) {
     publicacoes.put(conferencia.getNome(), conferencia);
     conferencias.put(conferencia.getNome(), conferencia);
   }
 
-  // Remove um autor da base de dados
+  /*
+   * Remove um autor da base de dados
+   */
   @Override
   public void removerAutor(String orcid) {
     Autor autor = autores.remove(orcid);
@@ -58,7 +70,9 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
     }
   }
 
-  // Remove um artigo da base de dados
+  /*
+   * Remove um autor da base de dados
+   */
   @Override
   public void removerArtigo(String titulo) {
     Artigo artigo = artigos.remove(titulo);
@@ -71,7 +85,9 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
       }
     }
   }
-
+/*
+ * Gravar autor removido para ficheiro
+ */
   public void gravarAutorRemovido(Autor autor) {
     String filename = "autores_removidos.txt"; // Nome do ficheiro onde os autores serão armazenados
 
@@ -84,7 +100,9 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
       System.err.println("Erro ao gravar autor removido: " + e.getMessage());
     }
   }
-
+  /*
+   * Remover autor removido para ficheiro
+   */
   public void removerAutorParaFicheiro(int orcid) {
     Autor autor = autores.remove(orcid);
     if (autor != null) {
@@ -97,6 +115,11 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
     }
   }
 
+  /**
+   * Remover Conferencia para o ficheiro
+   * @param nome da conferencia
+   * @return conferencia
+   */
   public Conferencia removerConferenciaParaFicheiro(String nome) {
     Conferencia conferencia = conferencias.remove(nome);
     if (conferencia != null) {
@@ -112,6 +135,11 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
       return conferencia;
   }
 
+  /**
+   * Remover Journal para o Ficheiro
+   * @param JCR_IF do Journal
+   * @return journal
+   */
   public Journal removerJournalParaFicheiro(String JCR_IF) {
     Journal journal = journais.remove(JCR_IF);
     if (journal != null) {
@@ -127,33 +155,64 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
       return journal;
   }
 
-   // Remove uma publicação da base de dados
+   /*
+    * Remove uma publicação da base de dados
+    */
   public void removerConferencia(String nome) {
     conferencias.remove(nome);
     publicacoes.remove(nome);
   }
-
+/*
+ * Remover Journal da BD
+ */
   public void removerJournal(String nome) {
     journais.remove(nome);
     publicacoes.remove(nome);
   }
 
+  /**
+   * Buscar Autor
+   * @param orcid Autor
+   * @return ORCID Autor
+   */
   public Autor buscarAutor(String orcid) {
     return autores.get(orcid);
   }
 
+  /**
+   * Buscar Artigo
+   * @param titulo do artigo
+   * @return get titulo do artigo
+   */
   public Artigo buscarArtigo(String titulo) {
     return artigos.get(titulo);
   }
 
+  /**
+   * Buscar Conferencia
+   * @param nome da conferencia
+   * @return nome da conferencia
+   */
   public Conferencia buscarConferencia(String nome) {
     return conferencias.get(nome);
   }
 
+  /**
+   * Buscar Journal
+   * @param nome do Journal
+   * @return Nome do Journal
+   */
   public Journal buscarJournal(String nome) {
     return journais.get(nome);
   }
 
+  /**
+   * Buscar Artigos por Autor e Periodo
+   * @param orcid do artigo
+   * @param anoInicio do artigo
+   * @param anoFim do artigo
+   * @return artigosEncontrados
+   */
   public List<Artigo> buscarArtigosPorAutorEPeriodo(String orcid, int anoInicio, int anoFim) {
     List<Artigo> artigosEncontrados = new ArrayList<>();
     Autor autor = buscarAutor(orcid);
@@ -167,6 +226,12 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
     return artigosEncontrados;
   }
 
+  /**
+   * Buscar Artigos entre um dado Periodo
+   * @param anoInicio do artigo
+   * @param anoFim do artigo
+   * @return artigosEncontrados
+   */
   public List<Artigo> buscarArtigos(int anoInicio, int anoFim) {
     List<Artigo> artigosEncontrados = new ArrayList<>();
 
@@ -177,12 +242,20 @@ public class BD implements gestaoAutor,gestaoConferencia,gestaoArtigo,gestaoJour
     }
     return artigosEncontrados;
   }
+
+  /**
+   * Get top3 Artigos Mais Visualizados
+   * @return Lista de artigos
+   */
   public List<Artigo> getTop3ArtigosMaisVisualizados() {
     return artigos.values().stream()
             .sorted((a1, a2) -> Integer.compare(a2.getNumViewspDia(), a1.getNumViewspDia()))
             .limit(3)
             .collect(Collectors.toList());
   }
+  /*
+   * Gerar report
+   */
   public void gerarRelatorio() {
     System.out.println("Relatório de Autores:");
     for (Autor autor : autores.values()) {
