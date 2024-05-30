@@ -3,13 +3,15 @@ package edu.ufp.inf.projeto.JavaFXStuff;
 import java.util.Date;
 import java.util.List;
 
+import static edu.ufp.inf.projeto.JavaFXStuff.Artigo.artigos;
+import static edu.ufp.inf.projeto.JavaFXStuff.Autor.getAutores;
+
 /**
  *
  */
 public class BDTeste {
 
     /**
-     *
      * @param args - hhvvhvh
      */
     public static void main(String[] args) {
@@ -20,10 +22,10 @@ public class BDTeste {
         Autor autor1 = new Autor("Alice", "ALI", "FERNADO", 1, 2, 3, 4);
         Autor autor2 = new Autor("Bob", "BO", "FERNADO", 2, 3, 4, 5);
 
-        Artigo artigo1 = new Artigo("Artigo 1", "Journal", "?", "journal", 2021, 2, 3, 4,1);
-        Artigo artigo2 = new Artigo("Artigo 2", "Conferencia", "?", "conferencia", 2021, 3, 4, 5,2);
-        Artigo artigo3 = new Artigo("Artigo 3", "Journal", "?", "journal", 2022, 4, 5, 6,3);
-        Artigo artigo4 = new Artigo("Artigo 4", "Conferencia", "?", "conferencia", 2023, 5, 6, 7,4);
+        Artigo artigo1 = new Artigo("Artigo 1", "Journal", "?", "journal", 2021, 2, 3, 4, 1);
+        Artigo artigo2 = new Artigo("Artigo 2", "Conferencia", "?", "conferencia", 2021, 3, 4, 5, 2);
+        Artigo artigo3 = new Artigo("Artigo 3", "Journal", "?", "journal", 2022, 4, 5, 6, 3);
+        Artigo artigo4 = new Artigo("Artigo 4", "Conferencia", "?", "conferencia", 2023, 5, 6, 7, 4);
 
         System.out.println("Inicializações Completas");
 
@@ -83,29 +85,51 @@ public class BDTeste {
         assert bd.buscarConferencia("aaa") != null;
         System.out.println("Conferência adicionada corretamente.");
 
-        // Remover um autor e verificar se foi removido corretamente
-        bd.removerAutor("ALI");
-        assert bd.buscarAutor("ALI") == null;
-        System.out.println("Autor Alice removido corretamente.");
+        // Gravar artigos e autores em ficheiros de texto
+        FileHandler.writeArtigosToFile(artigos, "artigosFormatoTXT.txt");
+        FileHandler.writeAutoresToFile(Autor.getAutores(), "autoresFormatoTXT.txt");
 
-        // Remover um artigo e verificar se foi removido corretamente
-        bd.removerArtigo("Artigo 2");
-        assert bd.buscarArtigo("Artigo 2") == null;
-        System.out.println("Artigo 2 removido corretamente.");
+        /*
+         * Gravar artigos e autores em ficheiros binarios
+         */
+        FileHandler.writeArtigosToBinaryFile(artigos, "artigosFormatoBinario.dat");
+        FileHandler.writeAutoresToBinaryFile(getAutores(), "autoresFormatoBinario.dat");
 
-        // Remover uma publicação e verificar se foi removida corretamente
-        bd.removerJournal("bbb");
-        assert bd.buscarJournal("bbb") == null;
-        System.out.println("Journal removido corretamente.");
+        // Ler artigos e autores dos arquivos binários
+        List<Artigo> artigosLidos = FileHandler.readArtigosFromBinaryFile("artigosFormatoBinario.dat");
+        List<Autor> autoresLidos = FileHandler.readAutoresFromBinaryFile("autoresFormatoBinario.dat");
 
+        // Exibir os artigos e autores lidos
+        for (Artigo artigo : artigosLidos) {
+            System.out.println(artigo);
+        }
+        for (Autor autor : autoresLidos) {
+            System.out.println(autor);
+
+            // Remover um autor e verificar se foi removido corretamente
+            bd.removerAutor("ALI");
+            assert bd.buscarAutor("ALI") == null;
+            System.out.println("Autor Alice removido corretamente.");
+
+            // Remover um artigo e verificar se foi removido corretamente
+            bd.removerArtigo("Artigo 2");
+            assert bd.buscarArtigo("Artigo 2") == null;
+            System.out.println("Artigo 2 removido corretamente.");
+
+            // Remover uma publicação e verificar se foi removida corretamente
+            bd.removerJournal("bbb");
+            assert bd.buscarJournal("bbb") == null;
+            System.out.println("Journal removido corretamente.");
 
 
             System.out.println("Todos os testes passaram.");
-        List<Artigo> top3Artigos = bd.getTop3ArtigosMaisVisualizados();
-        System.out.println("Top 3 artigos com mais visualizações:");
-        for (Artigo artigo : top3Artigos) {
-            System.out.println(artigo.getTitulo() + " - Visualizações: " + artigo.getNumViewspDia());
-        }
+            List<Artigo> top3Artigos = bd.getTop3ArtigosMaisVisualizados();
+            System.out.println("Top 3 artigos com mais visualizações:");
+            for (Artigo artigo : top3Artigos) {
+                System.out.println(artigo.getTitulo() + " - Visualizações: " + artigo.getNumViewspDia());
+            }
 
+        }
     }
 }
+

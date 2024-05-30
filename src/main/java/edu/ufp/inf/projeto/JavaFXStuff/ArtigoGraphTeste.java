@@ -57,5 +57,6 @@ public class ArtigoGraphTeste {
         // Testar verificar conexidade
         boolean conexo = grafo.verificarConectidade();
         System.out.println("O grafo principal é conexo? " + conexo);
+
     }
 }
