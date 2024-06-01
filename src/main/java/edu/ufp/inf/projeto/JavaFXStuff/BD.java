@@ -243,6 +243,22 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
   }
 
   /**
+   *
+   * @return lista dos autores
+   */
+  public List<Autor> getAllAutores() {
+    return new ArrayList<>(autores.values());
+  }
+
+  /**
+   *
+   * @return lista dos artigos
+   */
+  public List<Artigo> getAllArtigos() {
+    return new ArrayList<>(artigos.values());
+  }
+
+  /**
    * Get top3 Artigos Mais Visualizados
    * @return Lista de artigos
    */

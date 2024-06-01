@@ -1,10 +1,11 @@
 package edu.ufp.inf.projeto.JavaFXStuff;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Autor {
+public class Autor implements Serializable {
     private String nome;
     private String nomeCurto;
     private String filiacao;

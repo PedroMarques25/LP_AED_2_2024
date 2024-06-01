@@ -3,17 +3,11 @@ package edu.ufp.inf.projeto.JavaFXStuff;
 import java.util.Date;
 import java.util.List;
 
-import static edu.ufp.inf.projeto.JavaFXStuff.Artigo.artigos;
-import static edu.ufp.inf.projeto.JavaFXStuff.Autor.getAutores;
-
 /**
  *
  */
 public class BDTeste {
 
-    /**
-     * @param args - hhvvhvh
-     */
     public static void main(String[] args) {
         BD bd = new BD();
         Date di = new Date();
@@ -86,50 +80,47 @@ public class BDTeste {
         System.out.println("Conferência adicionada corretamente.");
 
         // Gravar artigos e autores em ficheiros de texto
-        FileHandler.writeArtigosToFile(artigos, "artigosFormatoTXT.txt");
-        FileHandler.writeAutoresToFile(Autor.getAutores(), "autoresFormatoTXT.txt");
+        FileHandler.writeArtigosToFile(bd.getAllArtigos(), "artigosFormatoTXT.txt");
+        FileHandler.writeAutoresToFile(bd.getAllAutores(), "autoresFormatoTXT.txt");
 
-        /*
-         * Gravar artigos e autores em ficheiros binarios
-         */
-        FileHandler.writeArtigosToBinaryFile(artigos, "artigosFormatoBinario.dat");
-        FileHandler.writeAutoresToBinaryFile(getAutores(), "autoresFormatoBinario.dat");
+        // Gravar artigos e autores em ficheiros binários
+        FileHandler.writeArtigosToBinaryFile(bd.getAllArtigos(), "artigosFormatoBinario.dat");
+        FileHandler.writeAutoresToBinaryFile(bd.getAllAutores(), "autoresFormatoBinario.dat");
 
         // Ler artigos e autores dos arquivos binários
         List<Artigo> artigosLidos = FileHandler.readArtigosFromBinaryFile("artigosFormatoBinario.dat");
         List<Autor> autoresLidos = FileHandler.readAutoresFromBinaryFile("autoresFormatoBinario.dat");
 
         // Exibir os artigos e autores lidos
+        System.out.println("Artigos lidos do ficheiro binário:");
         for (Artigo artigo : artigosLidos) {
             System.out.println(artigo);
         }
+        System.out.println("Autores lidos do ficheiro binário:");
         for (Autor autor : autoresLidos) {
             System.out.println(autor);
+        }
 
-            // Remover um autor e verificar se foi removido corretamente
-            bd.removerAutor("ALI");
-            assert bd.buscarAutor("ALI") == null;
-            System.out.println("Autor Alice removido corretamente.");
+        // Remover um autor e verificar se foi removido corretamente
+        bd.removerAutor("ALI");
+        assert bd.buscarAutor("ALI") == null;
+        System.out.println("Autor Alice removido corretamente.");
 
-            // Remover um artigo e verificar se foi removido corretamente
-            bd.removerArtigo("Artigo 2");
-            assert bd.buscarArtigo("Artigo 2") == null;
-            System.out.println("Artigo 2 removido corretamente.");
+        // Remover um artigo e verificar se foi removido corretamente
+        bd.removerArtigo("Artigo 2");
+        assert bd.buscarArtigo("Artigo 2") == null;
+        System.out.println("Artigo 2 removido corretamente.");
 
-            // Remover uma publicação e verificar se foi removida corretamente
-            bd.removerJournal("bbb");
-            assert bd.buscarJournal("bbb") == null;
-            System.out.println("Journal removido corretamente.");
+        // Remover uma publicação e verificar se foi removida corretamente
+        bd.removerJournal("bbb");
+        assert bd.buscarJournal("bbb") == null;
+        System.out.println("Journal removido corretamente.");
 
-
-            System.out.println("Todos os testes passaram.");
-            List<Artigo> top3Artigos = bd.getTop3ArtigosMaisVisualizados();
-            System.out.println("Top 3 artigos com mais visualizações:");
-            for (Artigo artigo : top3Artigos) {
-                System.out.println(artigo.getTitulo() + " - Visualizações: " + artigo.getNumViewspDia());
-            }
-
+        System.out.println("Todos os testes passaram.");
+        List<Artigo> top3Artigos = bd.getTop3ArtigosMaisVisualizados();
+        System.out.println("Top 3 artigos com mais visualizações:");
+        for (Artigo artigo : top3Artigos) {
+            System.out.println(artigo.getTitulo() + " - Visualizações: " + artigo.getNumViewspDia());
         }
     }
 }
-

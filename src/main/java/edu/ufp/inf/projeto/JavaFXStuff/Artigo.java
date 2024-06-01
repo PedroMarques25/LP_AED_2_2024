@@ -1,9 +1,10 @@
 package edu.ufp.inf.projeto.JavaFXStuff;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Artigo {
+public class Artigo implements Serializable {
   private String titulo;
   private String palavrasChave;
   private String abstractTexto;
