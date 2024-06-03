@@ -32,7 +32,7 @@ public interface gestaoArtigo {
      * @param anoFim do artigo
      * @return resultado
      */
-    public List<Artigo> buscarArtigosPorAutorEPeriodo(String orcid, int anoInicio, int anoFim) ;
+    public List<Artigo> buscarArtigosPorAutorEPeriodo(int orcid, int anoInicio, int anoFim) ;
 
     /**
      * Buscar Artigos

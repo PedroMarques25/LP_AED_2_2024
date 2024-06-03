@@ -66,9 +66,9 @@ public class BDTeste {
 
         // Verificar se os dados foram adicionados corretamente
         System.out.println("Verificando adições:");
-        assert bd.buscarAutor("ALI") != null;
+        assert bd.buscarAutor(1) != null;
         System.out.println("Autor Alice adicionado corretamente.");
-        assert bd.buscarAutor("BO") != null;
+        assert bd.buscarAutor(2) != null;
         System.out.println("Autor Bob adicionado corretamente.");
         assert bd.buscarArtigo("Artigo 1") != null;
         System.out.println("Artigo 1 adicionado corretamente.");
@@ -102,8 +102,8 @@ public class BDTeste {
         }
 
         // Remover um autor e verificar se foi removido corretamente
-        bd.removerAutor("ALI");
-        assert bd.buscarAutor("ALI") == null;
+        bd.removerAutor(1);
+        assert bd.buscarAutor(1) == null;
         System.out.println("Autor Alice removido corretamente.");
 
         // Remover um artigo e verificar se foi removido corretamente

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJournal {
   private Map<Integer, Autor> autores;
-  private Map<String, Artigo> artigos;
+  private Map<Integer, Artigo> artigos;
   private Map<String, Publicacao> publicacoes;
   private Map<String, Journal> journais;
   private Map<String, Conferencia> conferencias;
@@ -36,7 +36,7 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
    * // Adiciona um artigo à base de dados
    */
   public void adicionarArtigo(Artigo artigo) {
-    artigos.put(artigo.getTitulo(), artigo);
+    artigos.put(artigo.getID(), artigo);
   }
 
   /*
@@ -60,7 +60,7 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
    * Remove um autor da base de dados
    */
   @Override
-  public void removerAutor(String orcid) {
+  public void removerAutor(int orcid) {
     Autor autor = autores.remove(orcid);
     if (autor != null) {
       for (Artigo artigo : autor.getArtigos()) {
@@ -68,7 +68,6 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
       }
     }
   }
-
   /*
    * Remove um autor da base de dados
    */
@@ -174,7 +173,7 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
    * @param orcid Autor
    * @return ORCID Autor
    */
-  public Autor buscarAutor(String orcid) {
+  public Autor buscarAutor(int orcid) {
     return autores.get(orcid);
   }
 
@@ -186,6 +185,8 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
   public Artigo buscarArtigo(String titulo) {
     return artigos.get(titulo);
   }
+  @Override
+
 
   /**
    * Buscar Conferencia
@@ -212,7 +213,7 @@ public class BD implements gestaoAutor, gestaoConferencia, gestaoArtigo, gestaoJ
    * @param anoFim do artigo
    * @return artigosEncontrados
    */
-  public List<Artigo> buscarArtigosPorAutorEPeriodo(String orcid, int anoInicio, int anoFim) {
+  public List<Artigo> buscarArtigosPorAutorEPeriodo(int orcid, int anoInicio, int anoFim) {
     List<Artigo> artigosEncontrados = new ArrayList<>();
     Autor autor = buscarAutor(orcid);
     if (autor != null) {

@@ -5,6 +5,7 @@ import edu.princeton.cs.algs4.Graph;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AutorGraph {
     private List<Autor> autores;
@@ -24,6 +25,13 @@ public class AutorGraph {
     public void adicionarAutor(Autor autor) {
         autores.add(autor);
     }
+    public void removerAutor(Autor autor) {
+        autores.remove(autor);
+    }
+    /*
+    public Set<Artigo> listarArtigo(Artigo id1,int id2) {
+        return artigos.set(id2,id1);
+    }*/
 
     /**
      * Adicionar Artigo ao Graph

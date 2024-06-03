@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.DirectedEdge;
 import edu.princeton.cs.algs4.DijkstraSP;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ArtigoGraph {
     private Digraph digrafo;
@@ -27,6 +28,13 @@ public class ArtigoGraph {
     public void adicionarArtigo(Artigo artigo) {
         artigos.add(artigo);
     }
+    public void removerArtigo(Artigo artigo) {
+        artigos.remove(artigo);
+    }
+    /*
+    public Set<Artigo> listarArtigo() {
+        return artigos.set();
+    }*/
 
     /**
      * Adicionar citacao no artigo

@@ -1,5 +1,5 @@
 package edu.ufp.inf.lp2._06_gui_javafx.calc;
-/*
+
 
 import edu.ufp.inf.lp2._06_gui_javafx.calc.Calculator.Op;
 import javafx.application.Application;
@@ -210,4 +210,3 @@ public class CalculatorFX extends Application {
     }
 
 }
-*/

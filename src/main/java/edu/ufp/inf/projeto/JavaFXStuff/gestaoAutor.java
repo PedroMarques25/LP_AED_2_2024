@@ -12,14 +12,14 @@ public interface gestaoAutor {
      * Remover autor
      * @param orcid do Autor
      */
-   void removerAutor(String orcid);
+   void removerAutor(int orcid);
 
     /**
      * Buscar autor
      * @param orcid Autor
      * @return Orcid
      */
-    Autor buscarAutor(String orcid);
+    Autor buscarAutor(int orcid);
 
     /**
      * Gravar Autor Removido
